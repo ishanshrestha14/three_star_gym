@@ -1,28 +1,44 @@
+import { BrandIntro } from '../components/sections/BrandIntro'
+import { FaqList } from '../components/sections/FaqList'
+import { Hero } from '../components/sections/Hero'
+import { MembershipPlans } from '../components/sections/MembershipPlans'
+import { ServiceRows } from '../components/sections/ServiceRows'
+import { StatsStrip } from '../components/sections/StatsStrip'
+import { Testimonials } from '../components/sections/Testimonials'
+import { TrainersShowcase } from '../components/sections/TrainersShowcase'
+import { Transformations } from '../components/sections/Transformations'
+import { TrialCta } from '../components/sections/TrialCta'
+import { WhyUs } from '../components/sections/WhyUs'
 import { Seo } from '../components/seo/Seo'
-import { Container } from '../components/ui/Container'
-import { CtaLink } from '../components/ui/CtaLink'
+import {
+  about,
+  faqs,
+  hero,
+  plans,
+  services,
+  stats,
+  testimonials,
+  trainers,
+  transformations,
+  trialCta,
+  whyUs,
+} from '../content/homepage'
 
-/* Temporary shell — the real homepage is built in Phase 2. */
 export default function Home() {
   return (
     <>
       <Seo />
-      <section className="flex min-h-svh items-end pb-24 md:pb-16">
-        <Container>
-          <h1 className="type-display text-mega">
-            Build your
-            <br />
-            strongest self.
-          </h1>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <CtaLink to="/free-trial">Start your journey</CtaLink>
-            <CtaLink to="/membership" variant="outline">
-              Explore memberships
-            </CtaLink>
-          </div>
-        </Container>
-      </section>
-      <div className="h-[100svh]" aria-hidden />
+      <Hero content={hero} />
+      <StatsStrip stats={stats} />
+      <BrandIntro content={about} />
+      <ServiceRows services={services} />
+      <WhyUs content={whyUs} />
+      <Transformations items={transformations} />
+      <TrainersShowcase trainers={trainers} />
+      <MembershipPlans plans={plans} />
+      <Testimonials testimonials={testimonials} />
+      <TrialCta content={trialCta} />
+      <FaqList faqs={faqs} />
     </>
   )
 }

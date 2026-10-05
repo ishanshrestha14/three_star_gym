@@ -14,7 +14,7 @@ export function Footer() {
     <footer className="border-t border-chalk/10 pt-16 pb-28 md:pb-12">
       <Container>
         <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <Link to="/" className="type-display text-display block">
               {site.shortName}
             </Link>
@@ -41,7 +41,7 @@ export function Footer() {
             </dl>
           </div>
 
-          <div className="md:col-span-2">
+          <div className="md:col-span-3">
             <h2 className="text-sm text-steel">Contact</h2>
             <ul className="mt-4 space-y-2">
               <li>
@@ -53,7 +53,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${site.email}`} className="break-all hover:text-accent">{site.email}</a>
+                <a href={`mailto:${site.email}`} className="[overflow-wrap:anywhere] hover:text-accent">{site.email}</a>
               </li>
             </ul>
           </div>
