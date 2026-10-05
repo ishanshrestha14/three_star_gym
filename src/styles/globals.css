@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+/*
+  Design tokens. Every colour on the site comes from here.
+  Swap --color-accent for the gym's real brand colour.
+*/
+@theme {
+  --color-graphite: #1a1b1d; /* page background — rubber flooring */
+  --color-iron: #26282b; /* raised surfaces */
+  --color-steel: #8a8f94; /* muted text, hairlines */
+  --color-chalk: #eceae4; /* primary text */
+  --color-accent: #2e5cff; /* placeholder: competition-plate blue */
+  --color-accent-ink: #ffffff; /* text on accent */
+
+  --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+
+  /* Fluid display scale */
+  --text-mega: clamp(3.75rem, 14vw, 13.5rem);
+  --text-mega--line-height: 0.84;
+  --text-display: clamp(2.75rem, 7vw, 6.5rem);
+  --text-display--line-height: 0.9;
+  --text-headline: clamp(2rem, 4vw, 3.5rem);
+  --text-headline--line-height: 0.95;
+
+  --ease-out-strong: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Condensed heavy cut of Archivo used for all headlines. */
+@utility type-display {
+  font-family: var(--font-sans);
+  font-stretch: 66%;
+  font-weight: 850;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-graphite);
+    color: var(--color-chalk);
+    font-family: var(--font-sans);
+    font-stretch: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
