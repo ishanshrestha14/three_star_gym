@@ -1,11 +1,15 @@
 import type { Image } from '../types/content'
 
+const STORAGE_BASE = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/media`
+
 /*
-  Single place that turns a stored image path into a URL. When media moves to
-  Cloudflare R2, prefix the R2 public base URL here.
+  Single place that turns a stored image path into a URL.
+  "/placeholder/hero" → file shipped with the site in /public
+  "gallery/abc123"    → Supabase Storage, public "media" bucket
 */
 export function imageUrl(src: string, width: number) {
-  return `${src}-${width}.webp`
+  const base = src.startsWith('/') ? src : `${STORAGE_BASE}/${src}`
+  return `${base}-${width}.webp`
 }
 
 export function imageSrcSet(image: Image) {

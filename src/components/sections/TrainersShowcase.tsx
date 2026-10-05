@@ -32,11 +32,13 @@ export function TrainersShowcase({ trainers }: { trainers: Trainer[] }) {
             <li key={trainer.slug} className="w-[72vw] shrink-0 snap-start sm:w-[42vw] lg:w-auto">
               <Link to={`/trainers/${trainer.slug}`} className="group block">
                 <div className="aspect-[3/4] overflow-hidden bg-iron">
-                  <ResponsiveImage
-                    image={trainer.photo}
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 42vw, 72vw"
-                    className="h-full w-full object-cover grayscale transition-[filter,scale] duration-700 ease-out-strong group-hover:scale-[1.03] group-hover:grayscale-0"
-                  />
+                  {trainer.photo && (
+                    <ResponsiveImage
+                      image={trainer.photo}
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 42vw, 72vw"
+                      className="h-full w-full object-cover grayscale transition-[filter,scale] duration-700 ease-out-strong group-hover:scale-[1.03] group-hover:grayscale-0"
+                    />
+                  )}
                 </div>
                 <h3 className="mt-5 text-xl font-semibold">{trainer.name}</h3>
                 <p className="mt-1 text-chalk/70">

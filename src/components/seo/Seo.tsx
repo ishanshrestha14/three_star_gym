@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { site } from '../../content/site'
+import { useSiteSettings } from '../../api/settings'
 
 type SeoProps = {
   title?: string
@@ -14,7 +14,9 @@ function setMeta(selector: string, content: string) {
   Updates the static tags declared in index.html instead of rendering new ones,
   so the head never ends up with duplicate <title>/<meta> elements.
 */
-export function Seo({ title, description = site.description }: SeoProps) {
+export function Seo({ title, description: pageDescription }: SeoProps) {
+  const site = useSiteSettings()
+  const description = pageDescription ?? site.description
   const fullTitle = title ? `${title} | ${site.name}` : `${site.name} — Gym in ${site.city}`
 
   useEffect(() => {

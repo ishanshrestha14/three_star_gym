@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { Link, NavLink } from 'react-router'
-import { primaryNav, site } from '../../content/site'
+import { useSiteSettings } from '../../api/settings'
+import { primaryNav } from '../../content/navigation'
 import { useScrolled } from '../../hooks/useScrolled'
 import { cn } from '../../lib/cn'
 import { Container } from '../ui/Container'
@@ -8,6 +9,7 @@ import { CtaLink } from '../ui/CtaLink'
 import { MobileMenu } from './MobileMenu'
 
 export function Navbar() {
+  const site = useSiteSettings()
   const scrolled = useScrolled(24)
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = useCallback(() => setMenuOpen(false), [])

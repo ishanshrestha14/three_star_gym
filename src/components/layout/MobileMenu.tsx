@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router'
 import { gsap, MOTION_OK, useGSAP } from '../../animations/gsap'
-import { primaryNav, secondaryNav, site } from '../../content/site'
+import { useSiteSettings } from '../../api/settings'
+import { primaryNav, secondaryNav } from '../../content/navigation'
 import { telHref, whatsappHref } from '../../lib/contact'
 
 type MobileMenuProps = {
@@ -9,6 +10,7 @@ type MobileMenuProps = {
 }
 
 export function MobileMenu({ onClose }: MobileMenuProps) {
+  const site = useSiteSettings()
   const ref = useRef<HTMLDivElement>(null)
 
   useGSAP(

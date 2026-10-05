@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { gsap } from '../../animations/gsap'
 import { useMotion } from '../../animations/useMotion'
-import { site } from '../../content/site'
+import { useSiteSettings } from '../../api/settings'
 import type { HeroContent } from '../../types/content'
 import { ResponsiveImage } from '../media/ResponsiveImage'
 import { Container } from '../ui/Container'
@@ -15,6 +15,7 @@ import { MaskedLines } from '../ui/MaskedLines'
 */
 export function Hero({ content }: { content: HeroContent }) {
   const ref = useRef<HTMLElement>(null)
+  const site = useSiteSettings()
 
   useMotion(() => {
     gsap
@@ -31,7 +32,7 @@ export function Hero({ content }: { content: HeroContent }) {
     })
   }, ref)
 
-  const today = site.openingHours[0]
+  const hours = site.openingHours[0]
 
   return (
     <section ref={ref} className="relative isolate flex h-svh min-h-[40rem] flex-col overflow-hidden">
@@ -66,9 +67,11 @@ export function Hero({ content }: { content: HeroContent }) {
           <p>
             {site.area}, {site.city}
           </p>
-          <p>
-            Open {today.days}, {today.hours}
-          </p>
+          {hours && (
+            <p>
+              Open {hours.days}, {hours.hours}
+            </p>
+          )}
         </div>
       </Container>
     </section>

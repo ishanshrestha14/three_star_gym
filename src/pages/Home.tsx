@@ -1,3 +1,4 @@
+import { useHomepage } from '../api/homepage'
 import { BrandIntro } from '../components/sections/BrandIntro'
 import { FaqList } from '../components/sections/FaqList'
 import { Hero } from '../components/sections/Hero'
@@ -10,35 +11,25 @@ import { Transformations } from '../components/sections/Transformations'
 import { TrialCta } from '../components/sections/TrialCta'
 import { WhyUs } from '../components/sections/WhyUs'
 import { Seo } from '../components/seo/Seo'
-import {
-  about,
-  faqs,
-  hero,
-  plans,
-  services,
-  stats,
-  testimonials,
-  trainers,
-  transformations,
-  trialCta,
-  whyUs,
-} from '../content/homepage'
 
+/* Content is fetched by the route loader before this renders; hidden or empty sections drop out. */
 export default function Home() {
+  const page = useHomepage()
+
   return (
     <>
       <Seo />
-      <Hero content={hero} />
-      <StatsStrip stats={stats} />
-      <BrandIntro content={about} />
-      <ServiceRows services={services} />
-      <WhyUs content={whyUs} />
-      <Transformations items={transformations} />
-      <TrainersShowcase trainers={trainers} />
-      <MembershipPlans plans={plans} />
-      <Testimonials testimonials={testimonials} />
-      <TrialCta content={trialCta} />
-      <FaqList faqs={faqs} />
+      {page.hero && <Hero content={page.hero} />}
+      <StatsStrip stats={page.stats} />
+      {page.about && <BrandIntro content={page.about} />}
+      <ServiceRows services={page.services} />
+      {page.whyUs && <WhyUs content={page.whyUs} />}
+      <Transformations items={page.transformations} />
+      <TrainersShowcase trainers={page.trainers} />
+      <MembershipPlans plans={page.plans} />
+      <Testimonials testimonials={page.testimonials} />
+      {page.trialCta && <TrialCta content={page.trialCta} />}
+      <FaqList faqs={page.faqs} />
     </>
   )
 }

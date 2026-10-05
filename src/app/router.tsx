@@ -1,5 +1,8 @@
 import { createBrowserRouter } from 'react-router'
+import { homepageQuery } from '../api/homepage'
+import { siteSettingsQuery } from '../api/settings'
 import { PublicLayout } from '../components/layout/PublicLayout'
+import { queryClient } from '../lib/queryClient'
 import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
 import { PageStub } from '../pages/PageStub'
@@ -12,8 +15,11 @@ export const router = createBrowserRouter([
   {
     element: <PublicLayout />,
     errorElement: <RouteError />,
+    // Settings drive the nav, footer and contact links, so they load before first paint.
+    loader: () => queryClient.ensureQueryData(siteSettingsQuery),
+    hydrateFallbackElement: <div className="min-h-svh" />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <Home />, loader: () => queryClient.ensureQueryData(homepageQuery) },
       stub('about', 'About'),
       stub('services', 'Services'),
       stub('services/:slug', 'Service'),

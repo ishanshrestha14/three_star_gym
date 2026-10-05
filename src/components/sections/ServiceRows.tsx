@@ -33,10 +33,12 @@ export function ServiceRows({ services }: { services: Service[] }) {
                 to={`/services/${service.slug}`}
                 className="group relative isolate block overflow-hidden py-7 md:py-10"
               >
-                <div className="absolute inset-0 -z-10 [clip-path:inset(50%_0_50%_0)] transition-[clip-path] duration-500 ease-out-strong group-hover:[clip-path:inset(0_0_0_0)] group-focus-visible:[clip-path:inset(0_0_0_0)]">
-                  <ResponsiveImage image={service.image} sizes="100vw" className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-graphite/60" />
-                </div>
+                {service.image && (
+                  <div className="absolute inset-0 -z-10 [clip-path:inset(50%_0_50%_0)] transition-[clip-path] duration-500 ease-out-strong group-hover:[clip-path:inset(0_0_0_0)] group-focus-visible:[clip-path:inset(0_0_0_0)]">
+                    <ResponsiveImage image={service.image} sizes="100vw" className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-graphite/60" />
+                  </div>
+                )}
 
                 <div className="grid items-center gap-x-8 gap-y-2 md:grid-cols-12 md:px-4">
                   <h3 className="type-display text-headline transition-transform duration-500 ease-out-strong md:col-span-6 md:group-hover:translate-x-4">

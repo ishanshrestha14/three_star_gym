@@ -1,9 +1,11 @@
 import { Link } from 'react-router'
-import { primaryNav, secondaryNav, site } from '../../content/site'
+import { useSiteSettings } from '../../api/settings'
+import { primaryNav, secondaryNav } from '../../content/navigation'
 import { telHref, whatsappHref } from '../../lib/contact'
 import { Container } from '../ui/Container'
 
 export function Footer() {
+  const site = useSiteSettings()
   const socials = [
     { label: 'Instagram', href: site.instagramUrl },
     { label: 'Facebook', href: site.facebookUrl },

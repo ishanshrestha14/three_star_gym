@@ -1,16 +1,14 @@
-import { isRouteErrorResponse, useRouteError } from 'react-router'
-import NotFound from './NotFound'
-
-/* Last-resort screen when a route throws while rendering or loading. */
+/*
+  Last-resort screen when a route throws while loading or rendering, e.g. the
+  database is unreachable. It must not depend on any fetched data.
+*/
 export function RouteError() {
-  const error = useRouteError()
-
-  if (isRouteErrorResponse(error) && error.status === 404) return <NotFound />
-
   return (
     <div className="mx-auto max-w-xl px-4 pt-40 pb-32">
-      <h1 className="type-display text-headline">Something broke on this page</h1>
-      <p className="mt-6 text-chalk/70">Reload the page to try again. If it keeps happening, call or WhatsApp the gym directly.</p>
+      <h1 className="type-display text-headline">This page didn’t load</h1>
+      <p className="mt-6 text-chalk/70">
+        Check your connection and reload the page. If it keeps happening, try again in a few minutes.
+      </p>
       <button
         type="button"
         onClick={() => window.location.reload()}

@@ -1,4 +1,4 @@
-import type { SiteSettings } from '../content/site'
+import type { SiteSettings } from '../types/content'
 
 export function telHref(phone: string) {
   return `tel:${phone.replace(/[^\d+]/g, '')}`

@@ -16,6 +16,27 @@ export type Image = {
 
 export type Cta = { label: string; to: string }
 
+export type OpeningHours = { days: string; hours: string }
+
+/** Empty strings mean "not set" for optional contact fields. */
+export type SiteSettings = {
+  name: string
+  shortName: string
+  city: string
+  area: string
+  description: string
+  phone: string
+  whatsappNumber: string // international format, digits only
+  whatsappMessage: string
+  email: string
+  address: string
+  googleMapsUrl: string
+  instagramUrl: string
+  facebookUrl: string
+  tiktokUrl: string
+  openingHours: OpeningHours[]
+}
+
 export type HeroContent = {
   /** Line breaks ("\n") are kept as visual lines */
   heading: string
@@ -49,7 +70,7 @@ export type Service = {
   slug: string
   title: string
   shortDescription: string
-  image: Image
+  image: Image | null
 }
 
 export type Trainer = {
@@ -58,7 +79,7 @@ export type Trainer = {
   position: string
   yearsExperience: number
   specializations: string[]
-  photo: Image
+  photo: Image | null
 }
 
 export type MembershipPlan = {
