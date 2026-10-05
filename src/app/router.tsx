@@ -1,4 +1,7 @@
+import type { ComponentType } from 'react'
 import { createBrowserRouter } from 'react-router'
+import { AdminError } from '../admin/AdminError'
+import { requireAdmin } from '../admin/guard'
 import { homepageQuery } from '../api/homepage'
 import { plansQuery } from '../api/plans'
 import { siteSettingsQuery } from '../api/settings'
@@ -8,6 +11,9 @@ import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
 import { PageStub } from '../pages/PageStub'
 import { RouteError } from '../pages/RouteError'
+
+/** Code-split route: the module's default export becomes the route component. */
+const lazyPage = (load: () => Promise<{ default: ComponentType }>) => async () => ({ Component: (await load()).default })
 
 // Home is imported eagerly (it's the landing page); other pages become lazy routes as they're built.
 const stub = (path: string, title: string) => ({ path, element: <PageStub title={title} /> })
@@ -35,9 +41,35 @@ export const router = createBrowserRouter([
       {
         path: 'free-trial',
         loader: () => queryClient.ensureQueryData(plansQuery),
-        lazy: async () => ({ Component: (await import('../pages/FreeTrial')).default }),
+        lazy: lazyPage(() => import('../pages/FreeTrial')),
       },
       { path: '*', element: <NotFound /> },
+    ],
+  },
+
+  // Admin: separate layout and bundle, never loaded by visitors.
+  {
+    path: 'admin/login',
+    lazy: lazyPage(() => import('../admin/pages/Login')),
+    errorElement: <AdminError />,
+    hydrateFallbackElement: <div className="min-h-svh" />,
+  },
+  {
+    path: 'admin/reset-password',
+    lazy: lazyPage(() => import('../admin/pages/ResetPassword')),
+    errorElement: <AdminError />,
+    hydrateFallbackElement: <div className="min-h-svh" />,
+  },
+  {
+    path: 'admin',
+    loader: requireAdmin,
+    lazy: lazyPage(() => import('../admin/AdminLayout')),
+    errorElement: <AdminError />,
+    hydrateFallbackElement: <div className="min-h-svh" />,
+    children: [
+      { index: true, lazy: lazyPage(() => import('../admin/pages/Dashboard')) },
+      { path: 'enquiries', lazy: lazyPage(() => import('../admin/pages/Enquiries')) },
+      { path: 'enquiries/:id', lazy: lazyPage(() => import('../admin/pages/EnquiryDetail')) },
     ],
   },
 ])
