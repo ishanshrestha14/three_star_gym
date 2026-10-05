@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 import { homepageQuery } from '../api/homepage'
+import { plansQuery } from '../api/plans'
 import { siteSettingsQuery } from '../api/settings'
 import { PublicLayout } from '../components/layout/PublicLayout'
 import { queryClient } from '../lib/queryClient'
@@ -31,7 +32,11 @@ export const router = createBrowserRouter([
       stub('blog/:slug', 'Article'),
       stub('faq', 'FAQ'),
       stub('contact', 'Contact'),
-      stub('free-trial', 'Free trial'),
+      {
+        path: 'free-trial',
+        loader: () => queryClient.ensureQueryData(plansQuery),
+        lazy: async () => ({ Component: (await import('../pages/FreeTrial')).default }),
+      },
       { path: '*', element: <NotFound /> },
     ],
   },
