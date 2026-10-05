@@ -4,8 +4,15 @@ import { cn } from '../../lib/cn'
 
 type Variant = 'primary' | 'outline'
 
+type Size = 'md' | 'lg'
+
 const base =
-  'inline-flex h-12 items-center justify-center gap-2 rounded-[2px] px-6 text-sm font-semibold tracking-wide transition-colors duration-200'
+  'inline-flex items-center justify-center gap-2 rounded-[2px] font-semibold tracking-wide transition-colors duration-200'
+
+const sizes: Record<Size, string> = {
+  md: 'h-12 px-6 text-sm',
+  lg: 'h-14 px-8 text-base',
+}
 
 const variants: Record<Variant, string> = {
   primary: 'bg-accent text-accent-ink hover:bg-chalk hover:text-graphite',
@@ -16,13 +23,14 @@ type CtaLinkProps = {
   to: string
   children: ReactNode
   variant?: Variant
+  size?: Size
   className?: string
   onClick?: () => void
 }
 
 /** Button-styled link. External URLs (tel:, wa.me, https:) render a plain anchor. */
-export function CtaLink({ to, children, variant = 'primary', className, onClick }: CtaLinkProps) {
-  const classes = cn(base, variants[variant], className)
+export function CtaLink({ to, children, variant = 'primary', size = 'md', className, onClick }: CtaLinkProps) {
+  const classes = cn(base, sizes[size], variants[variant], className)
 
   if (/^(https?:|tel:|mailto:)/.test(to)) {
     const external = to.startsWith('http')

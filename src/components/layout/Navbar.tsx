@@ -46,7 +46,7 @@ export function Navbar() {
 
           <div className="flex items-center gap-2">
             <div className="hidden md:block">
-              <CtaLink to="/free-trial" className="h-11">
+              <CtaLink to="/free-trial">
                 Join now
               </CtaLink>
             </div>
