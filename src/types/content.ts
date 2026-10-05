@@ -1,0 +1,92 @@
+/*
+  Content shapes for CMS-managed data. Each type mirrors a future Supabase
+  table (or a homepage_sections jsonb payload), so swapping the placeholder
+  files for database queries won't change any component props.
+*/
+
+export type Image = {
+  /** Path without size suffix, e.g. "/placeholder/hero" → "/placeholder/hero-1280.webp" */
+  src: string
+  alt: string
+  width: number
+  height: number
+  /** Widths that exist on disk / in storage */
+  widths: number[]
+}
+
+export type Cta = { label: string; to: string }
+
+export type HeroContent = {
+  /** Line breaks ("\n") are kept as visual lines */
+  heading: string
+  subheading: string
+  primaryCta: Cta
+  secondaryCta: Cta
+  image: Image
+}
+
+export type Stat = { value: string; label: string }
+
+export type AboutContent = {
+  heading: string
+  body: string
+  images: [Image, Image]
+}
+
+export type WhyUsContent = {
+  heading: string
+  items: { title: string; description: string }[]
+}
+
+export type TrialCtaContent = {
+  heading: string
+  body: string
+  cta: Cta
+  image: Image
+}
+
+export type Service = {
+  slug: string
+  title: string
+  shortDescription: string
+  image: Image
+}
+
+export type Trainer = {
+  slug: string
+  name: string
+  position: string
+  yearsExperience: number
+  specializations: string[]
+  photo: Image
+}
+
+export type MembershipPlan = {
+  id: string
+  name: string
+  priceNpr: number
+  durationLabel: string
+  features: string[]
+  isPopular: boolean
+}
+
+export type Faq = { id: string; question: string; answer: string }
+
+export type Testimonial = {
+  id: string
+  name: string
+  rating: number
+  content: string
+  source: 'google' | 'facebook' | 'website' | 'other'
+  date: string
+}
+
+export type Transformation = {
+  id: string
+  personName: string
+  before: Image
+  after: Image
+  durationLabel: string
+  result: string
+  testimonial: string
+}
