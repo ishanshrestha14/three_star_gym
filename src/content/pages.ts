@@ -29,4 +29,9 @@ export const pages = {
     intro: 'Drop in during opening hours, call, or send a message. We reply to every enquiry within one working day.',
     seoDescription: 'Address, opening hours, phone, WhatsApp and directions to the gym.',
   },
+  gallery: {
+    title: 'Inside the\ngym.',
+    intro: 'The floor, the equipment and the people who train here.',
+    seoDescription: 'Photos of the gym: training floor, equipment, classes and members.',
+  },
 }

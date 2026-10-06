@@ -4,6 +4,7 @@ import { createBrowserRouter } from 'react-router'
 import { AdminError } from '../admin/AdminError'
 import { requireAdmin } from '../admin/guard'
 import { faqsQuery } from '../api/faqs'
+import { galleryQuery } from '../api/gallery'
 import { plansQuery } from '../api/plans'
 import { sectionsQuery } from '../api/sections'
 import { serviceQuery, servicesQuery } from '../api/services'
@@ -77,7 +78,7 @@ export const router = createBrowserRouter([
         loader: ({ params }) => ensure(trainerQuery(params.slug ?? ''), trainersQuery)(),
         lazy: lazyPage(() => import('../pages/TrainerDetail')),
       },
-      stub('gallery', 'Gallery'),
+      { path: 'gallery', loader: ensure(galleryQuery), lazy: lazyPage(() => import('../pages/Gallery')) },
       stub('blog', 'Blog'),
       stub('blog/:slug', 'Article'),
       { path: 'faq', loader: ensure(faqsQuery), lazy: lazyPage(() => import('../pages/Faq')) },
