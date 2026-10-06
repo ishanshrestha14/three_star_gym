@@ -17,7 +17,7 @@ export function Footer() {
       <Container>
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Link to="/" className="type-display text-display block">
+            <Link to="/" className="type-display block text-headline whitespace-nowrap">
               {site.shortName}
             </Link>
             <address className="mt-6 max-w-xs text-chalk/70 not-italic">{site.address}</address>
