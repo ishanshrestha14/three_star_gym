@@ -1,3 +1,4 @@
+import type { FieldErrors } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import type { Image } from '../types/content'
 import type { TablesUpdate } from '../types/database'
@@ -32,4 +33,15 @@ export function useSaveAndReturn<T extends ContentTable>(table: T, row: Row<T> |
       return null
     }
   }
+}
+
+/*
+  Second argument for handleSubmit: when validation fails, say so and move to
+  the first problem, so a mistake further down a long form isn't missed.
+*/
+export function onInvalid(errors: FieldErrors) {
+  const fields = Object.keys(errors)
+  if (import.meta.env.DEV) console.warn('Form invalid:', errors)
+  toast.error(fields.length === 1 ? 'One field needs attention before saving.' : `${fields.length} fields need attention before saving.`)
+  document.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus()
 }

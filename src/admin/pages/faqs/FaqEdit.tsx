@@ -6,7 +6,7 @@ import { contentListQuery, type Row } from '../../api/content'
 import { ContentEditLoader } from '../../components/ContentEditLoader'
 import { EditPage } from '../../components/EditPage'
 import { AdminField, FormSection, Input, Textarea, Toggle } from '../../components/form'
-import { useSaveAndReturn } from '../../useSaveAndReturn'
+import { onInvalid, useSaveAndReturn } from '../../useSaveAndReturn'
 import { useUnsavedChanges } from '../../useUnsavedChanges'
 
 const schema = z.object({
@@ -41,7 +41,7 @@ function FaqForm({ row }: { row: Row<'faqs'> | null }) {
   })
   const { allowNavigation } = useUnsavedChanges(isDirty)
 
-  const onSubmit = handleSubmit((values) => saveAndReturn(values, { allowNavigation }))
+  const onSubmit = handleSubmit((values) => saveAndReturn(values, { allowNavigation }), onInvalid)
 
   return (
     <EditPage

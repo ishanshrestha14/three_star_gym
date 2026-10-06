@@ -7,7 +7,7 @@ import { ContentEditLoader } from '../../components/ContentEditLoader'
 import { EditPage } from '../../components/EditPage'
 import { AdminField, FormSection, Input, Toggle } from '../../components/form'
 import { ListField } from '../../components/ListField'
-import { useSaveAndReturn } from '../../useSaveAndReturn'
+import { onInvalid, useSaveAndReturn } from '../../useSaveAndReturn'
 import { useUnsavedChanges } from '../../useUnsavedChanges'
 
 const NO_ID = '00000000-0000-0000-0000-000000000000'
@@ -59,7 +59,7 @@ function MembershipForm({ row }: { row: Row<'membership_plans'> | null }) {
       { ...values, features: values.features.map((f) => f.trim()).filter(Boolean) },
       { allowNavigation },
     )
-  })
+  }, onInvalid)
 
   return (
     <EditPage
