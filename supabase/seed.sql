@@ -91,3 +91,17 @@ update public.services set
   audience = 'Members who want their nutrition to match their training, whether the goal is losing fat or building muscle.',
   what_to_expect = 'We look at what you eat now and agree a few small changes. Check-ins track progress and adjust the plan as you go.'
 where slug = 'nutrition';
+
+-- FAQ categories and the rest of the common questions (placeholder answers, confirm with the gym)
+update public.faqs set category = 'Getting started' where question like 'I’ve never trained%' or question like 'Can I try%';
+update public.faqs set category = 'Training' where question like 'Do you offer personal training%';
+update public.faqs set category = 'Membership' where question like 'Do you have student%';
+update public.faqs set category = 'The gym' where question like 'Is there parking%';
+
+insert into public.faqs (question, answer, category, sort_order, published) values
+  ('How much does membership cost?', 'Plans start from one month, and longer plans cost less per month. See the membership page for current prices.', 'Membership', 10, true),
+  ('Can I pause my membership?', 'Ask at the front desk. We can usually pause longer plans for travel or illness.', 'Membership', 11, true),
+  ('How do I pay?', 'Pay at the front desk by cash, card or mobile wallet.', 'Membership', 12, true),
+  ('What are your opening hours?', 'Sunday to Friday 5:00 am to 9:00 pm, and Saturday 7:00 am to 12:00 pm.', 'The gym', 13, true),
+  ('What equipment do you have?', 'Squat racks, lifting platforms, barbells, a full dumbbell run, cable machines and a cardio area with treadmills, bikes and rowers.', 'The gym', 14, true),
+  ('Do you provide diet plans?', 'Yes. Our nutrition coaching gives you simple, realistic eating guidelines built around local food and your goal.', 'Training', 15, true);
