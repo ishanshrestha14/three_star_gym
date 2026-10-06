@@ -5,6 +5,7 @@ import { Link, NavLink, Outlet, useLoaderData, useNavigate } from 'react-router'
 import { cn } from '../lib/cn'
 import { supabase } from '../lib/supabase'
 import { statusCountsQuery } from './api/enquiries'
+import { Toaster } from './components/Toaster'
 import type { AdminSession } from './guard'
 
 type NavItem = { to: string; label: string; icon: ComponentType<{ className?: string }>; end?: boolean }
@@ -124,6 +125,7 @@ export default function AdminLayout() {
       <main className="mx-auto w-full max-w-6xl px-4 py-8 md:px-8 md:py-10">
         <Outlet />
       </main>
+      <Toaster />
     </div>
   )
 }
