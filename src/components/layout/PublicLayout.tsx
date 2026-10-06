@@ -1,6 +1,7 @@
 import { Outlet, ScrollRestoration } from 'react-router'
 import { Footer } from './Footer'
 import { MobileActionBar } from './MobileActionBar'
+import { NavigationProgress } from './NavigationProgress'
 import { Navbar } from './Navbar'
 
 export function PublicLayout() {
@@ -12,6 +13,7 @@ export function PublicLayout() {
       >
         Skip to content
       </a>
+      <NavigationProgress />
       <Navbar />
       <main id="main">
         <Outlet />
