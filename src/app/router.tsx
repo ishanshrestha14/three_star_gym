@@ -9,7 +9,7 @@ import { sectionsQuery } from '../api/sections'
 import { serviceQuery, servicesQuery } from '../api/services'
 import { siteSettingsQuery } from '../api/settings'
 import { testimonialsQuery } from '../api/testimonials'
-import { trainersQuery } from '../api/trainers'
+import { trainerQuery, trainersQuery } from '../api/trainers'
 import { transformationsQuery } from '../api/transformations'
 import { PublicLayout } from '../components/layout/PublicLayout'
 import { queryClient } from '../lib/queryClient'
@@ -72,7 +72,11 @@ export const router = createBrowserRouter([
         loader: ensure(trainersQuery, sectionsQuery),
         lazy: lazyPage(() => import('../pages/Trainers')),
       },
-      stub('trainers/:slug', 'Trainer'),
+      {
+        path: 'trainers/:slug',
+        loader: ({ params }) => ensure(trainerQuery(params.slug ?? ''), trainersQuery)(),
+        lazy: lazyPage(() => import('../pages/TrainerDetail')),
+      },
       stub('gallery', 'Gallery'),
       stub('blog', 'Blog'),
       stub('blog/:slug', 'Article'),
