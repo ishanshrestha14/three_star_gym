@@ -3,7 +3,7 @@ import type { ComponentType } from 'react'
 import { createBrowserRouter } from 'react-router'
 import { AdminError } from '../admin/AdminError'
 import { requireAdmin } from '../admin/guard'
-import { postsQuery } from '../api/blog'
+import { postQuery, postsQuery } from '../api/blog'
 import { faqsQuery } from '../api/faqs'
 import { galleryQuery } from '../api/gallery'
 import { plansQuery } from '../api/plans'
@@ -17,7 +17,6 @@ import { PublicLayout } from '../components/layout/PublicLayout'
 import { queryClient } from '../lib/queryClient'
 import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
-import { PageStub } from '../pages/PageStub'
 import { RouteError } from '../pages/RouteError'
 
 /** Loader that makes sure every listed query is cached before the page renders. */
@@ -29,9 +28,7 @@ const ensure =
 /** Code-split route: the module's default export becomes the route component. */
 const lazyPage = (load: () => Promise<{ default: ComponentType }>) => async () => ({ Component: (await load()).default })
 
-// Home is imported eagerly (it's the landing page); other pages become lazy routes as they're built.
-const stub = (path: string, title: string) => ({ path, element: <PageStub title={title} /> })
-
+// Home is imported eagerly (it's the landing page); every other page is code-split.
 export const router = createBrowserRouter([
   {
     element: <PublicLayout />,
@@ -85,7 +82,11 @@ export const router = createBrowserRouter([
       },
       { path: 'gallery', loader: ensure(galleryQuery), lazy: lazyPage(() => import('../pages/Gallery')) },
       { path: 'blog', loader: ensure(postsQuery), lazy: lazyPage(() => import('../pages/Blog')) },
-      stub('blog/:slug', 'Article'),
+      {
+        path: 'blog/:slug',
+        loader: ({ params }) => ensure(postQuery(params.slug ?? ''), postsQuery)(),
+        lazy: lazyPage(() => import('../pages/BlogPost')),
+      },
       { path: 'faq', loader: ensure(faqsQuery), lazy: lazyPage(() => import('../pages/Faq')) },
       { path: 'contact', lazy: lazyPage(() => import('../pages/Contact')) },
       {
