@@ -26,12 +26,12 @@ export const imageSchema: z.ZodType<Image, Image> = z.object({
   ext: z.enum(['webp', 'jpg']).optional(),
 })
 
-const ctaSchema: z.ZodType<Cta> = z.object({
+const ctaSchema: z.ZodType<Cta, Cta> = z.object({
   label: z.string().min(1),
   to: z.string().min(1),
 })
 
-export const heroSchema: z.ZodType<HeroContent> = z.object({
+export const heroSchema: z.ZodType<HeroContent, HeroContent> = z.object({
   heading: z.string().min(1),
   subheading: z.string(),
   primaryCta: ctaSchema,
@@ -39,29 +39,29 @@ export const heroSchema: z.ZodType<HeroContent> = z.object({
   image: imageSchema,
 })
 
-export const statsSchema: z.ZodType<{ items: Stat[] }> = z.object({
+export const statsSchema: z.ZodType<{ items: Stat[] }, { items: Stat[] }> = z.object({
   items: z.array(z.object({ value: z.string().min(1), label: z.string().min(1) })),
 })
 
-export const aboutSchema: z.ZodType<AboutContent> = z.object({
+export const aboutSchema: z.ZodType<AboutContent, AboutContent> = z.object({
   heading: z.string().min(1),
   body: z.string(),
   images: z.tuple([imageSchema, imageSchema]),
 })
 
-export const whyUsSchema: z.ZodType<WhyUsContent> = z.object({
+export const whyUsSchema: z.ZodType<WhyUsContent, WhyUsContent> = z.object({
   heading: z.string().min(1),
   items: z.array(z.object({ title: z.string().min(1), description: z.string() })),
 })
 
-export const trialCtaSchema: z.ZodType<TrialCtaContent> = z.object({
+export const trialCtaSchema: z.ZodType<TrialCtaContent, TrialCtaContent> = z.object({
   heading: z.string().min(1),
   body: z.string(),
   cta: ctaSchema,
   image: imageSchema,
 })
 
-export const aboutPageSchema: z.ZodType<AboutPageContent> = z.object({
+export const aboutPageSchema: z.ZodType<AboutPageContent, AboutPageContent> = z.object({
   title: z.string().min(1),
   intro: z.string(),
   image: imageSchema,
