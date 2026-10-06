@@ -127,3 +127,12 @@ export type Transformation = {
   result: string
   testimonial: string
 }
+
+export type GalleryCategory = 'gym' | 'equipment' | 'training' | 'members' | 'events' | 'facilities'
+
+export type GalleryImage = {
+  id: string
+  image: Image
+  caption: string
+  category: GalleryCategory
+}
