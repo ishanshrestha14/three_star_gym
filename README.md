@@ -16,8 +16,9 @@ npm run dev                    # http://localhost:5173
 ```
 
 `supabase start` applies `supabase/migrations/` and loads `supabase/seed.sql`
-(placeholder content). Local Supabase Studio runs at http://127.0.0.1:54323 and
-captured auth emails (password resets) at http://127.0.0.1:54324.
+(placeholder content). Local ports use the 553xx range so this project can run alongside
+other Supabase projects. Local Supabase Studio runs at http://127.0.0.1:55323 and
+captured auth emails (password resets) at http://127.0.0.1:55324.
 
 | Script | What it does |
 | --- | --- |
