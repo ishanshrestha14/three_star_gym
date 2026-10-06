@@ -122,6 +122,8 @@ export const router = createBrowserRouter([
       { index: true, lazy: lazyPage(() => import('../admin/pages/Dashboard')) },
       { path: 'enquiries', lazy: lazyPage(() => import('../admin/pages/Enquiries')) },
       { path: 'enquiries/:id', lazy: lazyPage(() => import('../admin/pages/EnquiryDetail')) },
+      { path: 'faqs', lazy: lazyPage(() => import('../admin/pages/faqs/FaqList')) },
+      { path: 'faqs/:id', lazy: lazyPage(() => import('../admin/pages/faqs/FaqEdit')) },
     ],
   },
 ])
