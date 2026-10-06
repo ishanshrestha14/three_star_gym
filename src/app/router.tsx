@@ -48,6 +48,7 @@ export const router = createBrowserRouter([
           faqsQuery,
           testimonialsQuery,
           transformationsQuery,
+          galleryQuery,
         ),
       },
       {

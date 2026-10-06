@@ -1,4 +1,5 @@
 import { useFaqs } from '../api/faqs'
+import { useGallery } from '../api/gallery'
 import { usePlans } from '../api/plans'
 import { useSections } from '../api/sections'
 import { useServices } from '../api/services'
@@ -7,6 +8,7 @@ import { useTrainers } from '../api/trainers'
 import { useTransformations } from '../api/transformations'
 import { BrandIntro } from '../components/sections/BrandIntro'
 import { FaqList } from '../components/sections/FaqList'
+import { GalleryStrip } from '../components/sections/GalleryStrip'
 import { Hero } from '../components/sections/Hero'
 import { MembershipPlans } from '../components/sections/MembershipPlans'
 import { ServiceRows } from '../components/sections/ServiceRows'
@@ -27,6 +29,7 @@ export default function Home() {
   const faqs = useFaqs()
   const testimonials = useTestimonials()
   const transformations = useTransformations()
+  const gallery = useGallery()
 
   return (
     <>
@@ -38,6 +41,7 @@ export default function Home() {
       {sections.whyUs && <WhyUs content={sections.whyUs} />}
       <Transformations items={transformations.slice(0, 3)} />
       <TrainersShowcase trainers={trainers.slice(0, 4)} />
+      <GalleryStrip images={gallery.slice(0, 6)} />
       <MembershipPlans plans={plans} />
       <Testimonials testimonials={testimonials.slice(0, 6)} />
       {sections.trialCta && <TrialCta content={sections.trialCta} />}
