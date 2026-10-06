@@ -17,6 +17,8 @@
   /* Fluid display scale */
   --text-mega: clamp(4.25rem, 14vw, 13.5rem);
   --text-mega--line-height: 0.84;
+  --text-title: clamp(3.5rem, 10vw, 10rem);
+  --text-title--line-height: 0.86;
   --text-display: clamp(2.75rem, 7vw, 6.5rem);
   --text-display--line-height: 0.9;
   --text-headline: clamp(2rem, 4vw, 3.5rem);
