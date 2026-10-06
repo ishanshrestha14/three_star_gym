@@ -1,6 +1,6 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { supabase } from '../lib/supabase'
-import { aboutSchema, heroSchema, parseOrNull, statsSchema, trialCtaSchema, whyUsSchema } from '../schemas/content'
+import { aboutPageSchema, aboutSchema, heroSchema, parseOrNull, statsSchema, trialCtaSchema, whyUsSchema } from '../schemas/content'
 import { unwrap } from './shared'
 
 async function fetchSections() {
@@ -14,6 +14,7 @@ async function fetchSections() {
     about: parseOrNull(aboutSchema, section('about'), 'about'),
     whyUs: parseOrNull(whyUsSchema, section('why_us'), 'why us'),
     trialCta: parseOrNull(trialCtaSchema, section('trial_cta'), 'trial CTA'),
+    aboutPage: parseOrNull(aboutPageSchema, section('about_page'), 'about page'),
   }
 }
 

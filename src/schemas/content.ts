@@ -6,6 +6,7 @@
 import { z } from 'zod'
 import type {
   AboutContent,
+  AboutPageContent,
   Cta,
   HeroContent,
   Image,
@@ -56,6 +57,16 @@ export const trialCtaSchema: z.ZodType<TrialCtaContent> = z.object({
   body: z.string(),
   cta: ctaSchema,
   image: imageSchema,
+})
+
+export const aboutPageSchema: z.ZodType<AboutPageContent> = z.object({
+  title: z.string().min(1),
+  intro: z.string(),
+  image: imageSchema,
+  story: z.object({ heading: z.string().min(1), body: z.string() }),
+  values: whyUsSchema,
+  facilities: z.object({ heading: z.string().min(1), items: z.array(z.string().min(1)), image: imageSchema }),
+  community: z.object({ heading: z.string().min(1), body: z.string(), image: imageSchema }),
 })
 
 export const openingHoursSchema: z.ZodType<OpeningHours[]> = z.array(
