@@ -1,0 +1,78 @@
+<!doctype html>
+<!--
+  Template for public/og-default.jpg, the image shown when a link to the site
+  is shared. Edit the text, then regenerate from the project root (fonts only
+  load over http, not file://):
+
+    python3 -m http.server 4719 &
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+      --hide-scrollbars --window-size=1200,630 --virtual-time-budget=3000 \
+      --screenshot=og.png http://localhost:4719/scripts/og-image.html
+    sips -s format jpeg -s formatOptions 82 og.png --out public/og-default.jpg
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: 'OG Archivo';
+        src: url('../node_modules/@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2') format('woff2-variations');
+        font-weight: 100 900;
+        font-stretch: 62% 125%;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #1a1b1d;
+        color: #eceae4;
+        font-family: 'OG Archivo', sans-serif;
+      }
+      .photo {
+        position: absolute;
+        inset: 0;
+        background: url('../public/placeholder/hero-1280.webp') center 35% / cover;
+      }
+      .shade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, #1a1b1d 0%, rgb(26 27 29 / 0.8) 38%, rgb(26 27 29 / 0) 100%);
+      }
+      .content {
+        position: absolute;
+        left: 72px;
+        bottom: 72px;
+      }
+      .mark {
+        width: 56px;
+        height: 56px;
+        background: #e85d04;
+        margin-bottom: 36px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 190px;
+        line-height: 0.84;
+        font-stretch: 66%;
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 28px 0 0;
+        font-size: 30px;
+        color: rgb(236 234 228 / 0.75);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="photo"></div>
+    <div class="shade"></div>
+    <div class="content">
+      <div class="mark"></div>
+      <h1>Three<br />Star</h1>
+      <p>Strength &amp; personal training · Kathmandu</p>
+    </div>
+  </body>
+</html>
