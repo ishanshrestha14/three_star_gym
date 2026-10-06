@@ -9,7 +9,13 @@ import { Container } from '../ui/Container'
 import { CtaLink } from '../ui/CtaLink'
 import { MaskedLines } from '../ui/MaskedLines'
 
-export function MembershipPlans({ plans }: { plans: MembershipPlan[] }) {
+type MembershipPlansProps = {
+  plans: MembershipPlan[]
+  /** Hide the section heading when the page already has one */
+  showHeader?: boolean
+}
+
+export function MembershipPlans({ plans, showHeader = true }: MembershipPlansProps) {
   const ref = useRef<HTMLElement>(null)
 
   useMotion(() => {
@@ -22,14 +28,16 @@ export function MembershipPlans({ plans }: { plans: MembershipPlan[] }) {
   return (
     <section ref={ref} id="membership" className="py-24 md:py-32">
       <Container>
-        <div className="grid gap-6 md:grid-cols-12 md:items-end">
-          <MaskedLines text="Membership" className="type-display text-display md:col-span-7" />
-          <p className="max-w-sm text-chalk/70 md:col-span-4 md:col-start-9 md:pb-2">
-            Every plan includes full gym access. Prices are in Nepali rupees and paid at the front desk.
-          </p>
-        </div>
+        {showHeader && (
+          <div className="mb-12 grid gap-6 md:mb-16 md:grid-cols-12 md:items-end">
+            <MaskedLines text="Membership" className="type-display text-display md:col-span-7" />
+            <p className="max-w-sm text-chalk/70 md:col-span-4 md:col-start-9 md:pb-2">
+              Every plan includes full gym access. Prices are in Nepali rupees and paid at the front desk.
+            </p>
+          </div>
+        )}
 
-        <ul data-plans className="mt-12 grid border-t border-chalk/15 md:mt-16 md:grid-cols-2 xl:grid-cols-4">
+        <ul data-plans className="grid border-t border-chalk/15 md:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan, index) => (
             <li
               key={plan.id}
@@ -47,7 +55,16 @@ export function MembershipPlans({ plans }: { plans: MembershipPlan[] }) {
                 {plan.isPopular && <p className="text-sm font-semibold text-accent">Most popular</p>}
               </div>
               <p className="mt-6 type-display text-headline">{formatNpr(plan.priceNpr)}</p>
-              <p className="mt-2 text-sm text-chalk/60">for {plan.durationLabel}</p>
+              {/* Two lines reserved so features line up across plans */}
+              <p className="mt-2 min-h-10 text-sm text-chalk/60">
+                for {plan.durationLabel}
+                {plan.durationMonths && plan.durationMonths > 1 && (
+                  <>
+                    <br />
+                    about {formatNpr(Math.round(plan.priceNpr / plan.durationMonths))} a month
+                  </>
+                )}
+              </p>
 
               <ul className="mt-8 mb-10 space-y-3">
                 {plan.features.map((feature) => (

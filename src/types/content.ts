@@ -96,6 +96,7 @@ export type MembershipPlan = {
   name: string
   priceNpr: number
   durationLabel: string
+  durationMonths: number | null
   features: string[]
   isPopular: boolean
 }

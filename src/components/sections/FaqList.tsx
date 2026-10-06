@@ -8,7 +8,12 @@ import { Container } from '../ui/Container'
 import { MaskedLines } from '../ui/MaskedLines'
 
 /* Native <details> accordion: works without JavaScript and opens one answer at a time. */
-export function FaqList({ faqs }: { faqs: Faq[] }) {
+type FaqListProps = {
+  faqs: Faq[]
+  title?: string
+}
+
+export function FaqList({ faqs, title = 'Questions,\nanswered.' }: FaqListProps) {
   const ref = useRef<HTMLElement>(null)
 
   useMotion(() => {
@@ -21,7 +26,7 @@ export function FaqList({ faqs }: { faqs: Faq[] }) {
     <section ref={ref} className="py-24 md:py-32">
       <Container className="grid gap-12 md:grid-cols-12 md:gap-8">
         <div className="md:col-span-5">
-          <MaskedLines text={'Questions,\nanswered.'} className="type-display text-display" />
+          <MaskedLines text={title} className="type-display text-display" />
           <Link
             to="/faq"
             className="mt-8 inline-block text-sm font-semibold underline decoration-chalk/30 underline-offset-4 hover:decoration-accent"
