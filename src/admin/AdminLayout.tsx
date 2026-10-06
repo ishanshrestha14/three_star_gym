@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { CreditCard, Dumbbell, ExternalLink, HelpCircle, Inbox, MessageSquareQuote, TrendingUp, Users, LayoutDashboard, LogOut, Menu, X } from 'lucide-react'
+import { CreditCard, Dumbbell, ExternalLink, HelpCircle, Images, Inbox, MessageSquareQuote, TrendingUp, Users, LayoutDashboard, LogOut, Menu, X } from 'lucide-react'
 import { useEffect, useState, type ComponentType } from 'react'
 import { Link, NavLink, Outlet, useLoaderData, useNavigate } from 'react-router'
 import { cn } from '../lib/cn'
@@ -22,6 +22,7 @@ const nav: { heading?: string; items: NavItem[] }[] = [
       { to: '/admin/memberships', label: 'Memberships', icon: CreditCard },
       { to: '/admin/transformations', label: 'Transformations', icon: TrendingUp },
       { to: '/admin/testimonials', label: 'Testimonials', icon: MessageSquareQuote },
+      { to: '/admin/gallery', label: 'Gallery', icon: Images },
       { to: '/admin/faqs', label: 'FAQs', icon: HelpCircle },
     ],
   },
