@@ -25,7 +25,7 @@ const schema = z.object({
   specializations: z.array(z.string()),
   bio: z.string().trim().max(3000),
   certifications: z.array(z.string()),
-  photo: imageSchema.nullable(),
+  photo: z.nullable(imageSchema),
   instagram: optionalUrl,
   facebook: optionalUrl,
   tiktok: optionalUrl,

@@ -15,8 +15,8 @@ import { useUnsavedChanges } from '../../useUnsavedChanges'
 const categoryValues = Object.keys(galleryCategoryLabel) as [GalleryCategory, ...GalleryCategory[]]
 
 const schema = z.object({
-  image: imageSchema
-    .nullable()
+  image: z
+    .nullable(imageSchema)
     .refine((v) => Boolean(v), 'Choose a photo')
     .refine((v) => Boolean(v?.alt.trim()), 'Describe the photo so screen readers and Google understand it'),
   category: z.enum(categoryValues),

@@ -14,8 +14,8 @@ import { useUnsavedChanges } from '../../useUnsavedChanges'
 const schema = z
   .object({
     person_name: z.string().trim().min(1, 'Enter the member’s name (first name is fine)').max(100),
-    before_image: imageSchema.nullable().refine((v) => Boolean(v), 'Add the before photo'),
-    after_image: imageSchema.nullable().refine((v) => Boolean(v), 'Add the after photo'),
+    before_image: z.nullable(imageSchema).refine((v) => Boolean(v), 'Add the before photo'),
+    after_image: z.nullable(imageSchema).refine((v) => Boolean(v), 'Add the after photo'),
     duration_label: z.string().trim().max(40),
     goal: z.string().trim().max(200),
     result: z.string().trim().min(1, 'Describe the result, e.g. -8 kg').max(60),

@@ -30,7 +30,7 @@ const schema = z
     title: z.string().trim().min(1, 'Give the post a title').max(200),
     slug: z.string().regex(SLUG_PATTERN, 'Use lowercase letters, numbers and dashes only'),
     excerpt: z.string().trim().max(300, 'Keep the summary under 300 characters'),
-    cover_image: imageSchema.nullable(),
+    cover_image: z.nullable(imageSchema),
     content: z.string(),
     category_id: z.string(),
     trainer_id: z.string(),

@@ -20,7 +20,7 @@ const schema = z.object({
   title: z.string().trim().min(1, 'Enter the service name').max(100),
   slug: z.string().regex(SLUG_PATTERN, 'Use lowercase letters, numbers and dashes only'),
   short_description: z.string().trim().min(1, 'Add a one-line summary').max(160, 'Keep the summary under 160 characters'),
-  image: imageSchema.nullable(),
+  image: z.nullable(imageSchema),
   body: z.string().trim().max(5000),
   benefits: z.array(z.string()),
   audience: z.string().trim().max(1000),

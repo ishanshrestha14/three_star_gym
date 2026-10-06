@@ -25,7 +25,7 @@ const schema = z.object({
   source: z.enum(['google', 'facebook', 'website', 'other']),
   source_url: z.union([z.literal(''), z.url('Enter a full link starting with https://')]),
   review_date: z.string(),
-  photo: imageSchema.nullable(),
+  photo: z.nullable(imageSchema),
   published: z.boolean(),
 })
 type Values = z.infer<typeof schema>

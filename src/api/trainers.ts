@@ -1,6 +1,6 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { db } from '../lib/db'
-import { z } from 'zod'
+import * as z from 'zod/mini'
 import { parseOrNull } from '../schemas/content'
 import type { Trainer, TrainerDetail } from '../types/content'
 import { toImage, unwrap } from './shared'
@@ -29,9 +29,9 @@ export const trainersQuery = queryOptions({ queryKey: ['trainers'], queryFn: fet
 export const useTrainers = () => useSuspenseQuery(trainersQuery).data
 
 const socialLinksSchema = z.object({
-  instagram: z.url().optional(),
-  facebook: z.url().optional(),
-  tiktok: z.url().optional(),
+  instagram: z.optional(z.url()),
+  facebook: z.optional(z.url()),
+  tiktok: z.optional(z.url()),
 })
 
 async function fetchTrainer(slug: string): Promise<TrainerDetail | null> {
