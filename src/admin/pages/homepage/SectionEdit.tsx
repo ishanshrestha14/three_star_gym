@@ -1,10 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
-import { heroSchema, parseOrNull, trialCtaSchema } from '../../../schemas/content'
+import { aboutSchema, heroSchema, parseOrNull, statsSchema, trialCtaSchema, whyUsSchema } from '../../../schemas/content'
 import { adminSectionsQuery } from '../../api/sections'
 import { EmptyState, ErrorState, LoadingRows, Panel } from '../../components/ui'
 import { HeroForm } from './HeroForm'
+import { IntroForm } from './IntroForm'
+import { StatsForm } from './StatsForm'
 import { TrialCtaForm } from './TrialCtaForm'
+import { WhyUsForm } from './WhyUsForm'
 
 /* Loads one homepage section and shows the form made for it. */
 export default function SectionEdit() {
@@ -19,6 +22,12 @@ export default function SectionEdit() {
   switch (key) {
     case 'hero':
       return <HeroForm content={parseOrNull(heroSchema, content, 'hero')} />
+    case 'stats':
+      return <StatsForm content={parseOrNull(statsSchema, content, 'stats')} />
+    case 'about':
+      return <IntroForm content={parseOrNull(aboutSchema, content, 'introduction')} />
+    case 'why_us':
+      return <WhyUsForm content={parseOrNull(whyUsSchema, content, 'why us')} />
     case 'trial_cta':
       return <TrialCtaForm content={parseOrNull(trialCtaSchema, content, 'trial CTA')} />
     default:
