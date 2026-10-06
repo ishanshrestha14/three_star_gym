@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { ExternalLink, HelpCircle, Inbox, LayoutDashboard, LogOut, Menu, X } from 'lucide-react'
+import { CreditCard, ExternalLink, HelpCircle, Inbox, LayoutDashboard, LogOut, Menu, X } from 'lucide-react'
 import { useEffect, useState, type ComponentType } from 'react'
 import { Link, NavLink, Outlet, useLoaderData, useNavigate } from 'react-router'
 import { cn } from '../lib/cn'
@@ -14,7 +14,13 @@ type NavItem = { to: string; label: string; icon: ComponentType<{ className?: st
 const nav: { heading?: string; items: NavItem[] }[] = [
   { items: [{ to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true }] },
   { heading: 'Leads', items: [{ to: '/admin/enquiries', label: 'Enquiries', icon: Inbox }] },
-  { heading: 'Content', items: [{ to: '/admin/faqs', label: 'FAQs', icon: HelpCircle }] },
+  {
+    heading: 'Content',
+    items: [
+      { to: '/admin/memberships', label: 'Memberships', icon: CreditCard },
+      { to: '/admin/faqs', label: 'FAQs', icon: HelpCircle },
+    ],
+  },
 ]
 
 export default function AdminLayout() {
