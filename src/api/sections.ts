@@ -1,11 +1,11 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import { aboutPageSchema, aboutSchema, heroSchema, parseOrNull, statsSchema, trialCtaSchema, whyUsSchema } from '../schemas/content'
 import { unwrap } from './shared'
 
 async function fetchSections() {
   // Filter on visibility explicitly: RLS also returns hidden sections to admins.
-  const rows = await supabase.from('homepage_sections').select('key, content').eq('is_visible', true).then(unwrap)
+  const rows = await db.from('homepage_sections').select('key, content').eq('is_visible', true).then(unwrap)
   const section = (key: string) => rows.find((row) => row.key === key)?.content
 
   return {

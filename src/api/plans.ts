@@ -1,9 +1,9 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import type { MembershipPlan } from '../types/content'
 
 async function fetchPlans(): Promise<MembershipPlan[]> {
-  const { data, error } = await supabase
+  const { data, error } = await db
     .from('membership_plans')
     .select('id, name, price_npr, duration_label, duration_months, features, is_popular')
     .eq('published', true)

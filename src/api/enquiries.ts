@@ -1,5 +1,5 @@
 import type { Database } from '../types/database'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import type { EnquiryInput } from '../schemas/enquiry'
 
 export type EnquirySource = Database['public']['Enums']['enquiry_source']
@@ -15,7 +15,7 @@ export class EnquiryError extends Error {}
 
 /** Sends a website form through the submit_enquiry() RPC (validated and rate-limited in Postgres). */
 export async function submitEnquiry(input: EnquiryInput, { source, subject, membershipPlanId }: SubmitOptions) {
-  const { error } = await supabase.rpc('submit_enquiry', {
+  const { error } = await db.rpc('submit_enquiry', {
     p_name: input.name,
     p_phone: input.phone,
     p_email: input.email || undefined,

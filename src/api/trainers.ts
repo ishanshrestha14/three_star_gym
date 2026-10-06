@@ -1,12 +1,12 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import { z } from 'zod'
 import { parseOrNull } from '../schemas/content'
 import type { Trainer, TrainerDetail } from '../types/content'
 import { toImage, unwrap } from './shared'
 
 async function fetchTrainers(): Promise<Trainer[]> {
-  const rows = await supabase
+  const rows = await db
     .from('trainers')
     .select('slug, name, position, years_experience, specializations, photo, bio')
     .eq('published', true)
@@ -35,7 +35,7 @@ const socialLinksSchema = z.object({
 })
 
 async function fetchTrainer(slug: string): Promise<TrainerDetail | null> {
-  const { data: row, error } = await supabase
+  const { data: row, error } = await db
     .from('trainers')
     .select('*')
     .eq('slug', slug)

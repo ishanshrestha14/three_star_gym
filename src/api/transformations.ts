@@ -1,10 +1,10 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import type { Transformation } from '../types/content'
 import { toImage, unwrap } from './shared'
 
 async function fetchTransformations(): Promise<Transformation[]> {
-  const rows = await supabase
+  const rows = await db
     .from('transformations')
     .select('id, person_name, before_image, after_image, duration_label, result, testimonial')
     .eq('published', true)

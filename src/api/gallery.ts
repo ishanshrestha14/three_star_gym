@@ -1,5 +1,5 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import type { GalleryCategory, GalleryImage } from '../types/content'
 import { toImage, unwrap } from './shared'
 
@@ -13,7 +13,7 @@ export const galleryCategoryLabel: Record<GalleryCategory, string> = {
 }
 
 async function fetchGallery(): Promise<GalleryImage[]> {
-  const rows = await supabase
+  const rows = await db
     .from('gallery_images')
     .select('id, image, caption, category')
     .eq('published', true)

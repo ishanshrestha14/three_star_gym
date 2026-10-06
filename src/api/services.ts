@@ -1,10 +1,10 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import type { Service, ServiceDetail } from '../types/content'
 import { toImage, unwrap } from './shared'
 
 async function fetchServices(): Promise<Service[]> {
-  const rows = await supabase
+  const rows = await db
     .from('services')
     .select('slug, title, short_description, image')
     .eq('published', true)
@@ -24,7 +24,7 @@ export const servicesQuery = queryOptions({ queryKey: ['services'], queryFn: fet
 export const useServices = () => useSuspenseQuery(servicesQuery).data
 
 async function fetchService(slug: string): Promise<ServiceDetail | null> {
-  const { data: row, error } = await supabase
+  const { data: row, error } = await db
     .from('services')
     .select('*')
     .eq('slug', slug)

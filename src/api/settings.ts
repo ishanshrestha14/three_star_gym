@@ -1,10 +1,10 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import { openingHoursSchema, parseOrNull } from '../schemas/content'
 import type { SiteSettings } from '../types/content'
 
 async function fetchSiteSettings(): Promise<SiteSettings> {
-  const { data, error } = await supabase.from('site_settings').select('*').single()
+  const { data, error } = await db.from('site_settings').select('*').single()
   if (error) throw error
 
   return {

@@ -1,10 +1,10 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import type { Faq } from '../types/content'
 import { unwrap } from './shared'
 
 async function fetchFaqs(): Promise<Faq[]> {
-  return supabase
+  return db
     .from('faqs')
     .select('id, question, answer, category')
     .eq('published', true)

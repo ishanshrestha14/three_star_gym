@@ -1,10 +1,10 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import type { Testimonial } from '../types/content'
 import { unwrap } from './shared'
 
 async function fetchTestimonials(): Promise<Testimonial[]> {
-  const rows = await supabase
+  const rows = await db
     .from('testimonials')
     .select('id, name, rating, content, source, review_date')
     .eq('published', true)

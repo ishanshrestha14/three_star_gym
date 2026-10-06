@@ -1,5 +1,5 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
-import { supabase } from '../lib/supabase'
+import { db } from '../lib/db'
 import type { BlogPost, BlogPostSummary } from '../types/content'
 import { toImage, unwrap } from './shared'
 
@@ -35,7 +35,7 @@ function toSummary(row: SummaryRow): BlogPostSummary {
   visitors, but admins can see drafts, so the filter is repeated here.
 */
 const publicPosts = () =>
-  supabase
+  db
     .from('blog_posts')
     .select(summaryColumns)
     .eq('status', 'published')
@@ -50,7 +50,7 @@ export const postsQuery = queryOptions({
 export const usePosts = () => useSuspenseQuery(postsQuery).data
 
 async function fetchPost(slug: string): Promise<BlogPost | null> {
-  const { data: row, error } = await supabase
+  const { data: row, error } = await db
     .from('blog_posts')
     .select(`${summaryColumns}, content, tags, seo_title, seo_description, author:trainers(slug, name)`)
     .eq('slug', slug)
