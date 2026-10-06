@@ -73,6 +73,15 @@ export type Service = {
   image: Image | null
 }
 
+export type ServiceDetail = Service & {
+  body: string
+  benefits: string[]
+  audience: string
+  whatToExpect: string
+  seoTitle: string
+  seoDescription: string
+}
+
 export type Trainer = {
   slug: string
   name: string

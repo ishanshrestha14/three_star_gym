@@ -6,7 +6,7 @@ import { requireAdmin } from '../admin/guard'
 import { faqsQuery } from '../api/faqs'
 import { plansQuery } from '../api/plans'
 import { sectionsQuery } from '../api/sections'
-import { servicesQuery } from '../api/services'
+import { serviceQuery, servicesQuery } from '../api/services'
 import { siteSettingsQuery } from '../api/settings'
 import { testimonialsQuery } from '../api/testimonials'
 import { trainersQuery } from '../api/trainers'
@@ -57,7 +57,11 @@ export const router = createBrowserRouter([
         loader: ensure(servicesQuery, sectionsQuery),
         lazy: lazyPage(() => import('../pages/Services')),
       },
-      stub('services/:slug', 'Service'),
+      {
+        path: 'services/:slug',
+        loader: ({ params }) => ensure(serviceQuery(params.slug ?? ''), servicesQuery, sectionsQuery)(),
+        lazy: lazyPage(() => import('../pages/ServiceDetail')),
+      },
       stub('membership', 'Membership'),
       stub('trainers', 'Trainers'),
       stub('trainers/:slug', 'Trainer'),
