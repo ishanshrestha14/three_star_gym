@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { useSiteSettings } from '../api/settings'
 import { EnquiryForm } from '../components/forms/EnquiryForm'
 import { PageHeader } from '../components/sections/PageHeader'
-import { JsonLd } from '../components/seo/JsonLd'
+import { GymJsonLd } from '../components/seo/GymJsonLd'
 import { Seo } from '../components/seo/Seo'
 import { Container } from '../components/ui/Container'
 import { pages } from '../content/pages'
@@ -32,20 +32,7 @@ export default function Contact() {
   return (
     <>
       <Seo title="Contact" description={pages.contact.seoDescription} />
-      <JsonLd
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'HealthClub',
-          name: site.name,
-          description: site.description,
-          telephone: site.phone,
-          email: site.email,
-          address: { '@type': 'PostalAddress', streetAddress: site.address, addressLocality: site.city, addressCountry: 'NP' },
-          hasMap: site.googleMapsUrl,
-          url: window.location.origin,
-          sameAs: socials.map((social) => social.href),
-        }}
-      />
+      <GymJsonLd />
       <PageHeader title={pages.contact.title} intro={pages.contact.intro} />
 
       <Container className="grid gap-16 py-16 md:grid-cols-12 md:gap-8 md:py-28">
