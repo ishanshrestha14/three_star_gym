@@ -124,6 +124,8 @@ export const router = createBrowserRouter([
       { path: 'enquiries/:id', lazy: lazyPage(() => import('../admin/pages/EnquiryDetail')) },
       { path: 'faqs', lazy: lazyPage(() => import('../admin/pages/faqs/FaqList')) },
       { path: 'faqs/:id', lazy: lazyPage(() => import('../admin/pages/faqs/FaqEdit')) },
+      { path: 'services', lazy: lazyPage(() => import('../admin/pages/services/ServiceList')) },
+      { path: 'services/:id', lazy: lazyPage(() => import('../admin/pages/services/ServiceEdit')) },
       { path: 'memberships', lazy: lazyPage(() => import('../admin/pages/memberships/MembershipList')) },
       { path: 'memberships/:id', lazy: lazyPage(() => import('../admin/pages/memberships/MembershipEdit')) },
     ],
