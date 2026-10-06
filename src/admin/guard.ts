@@ -1,13 +1,15 @@
 import { redirect, type LoaderFunctionArgs } from 'react-router'
-import { supabase } from '../lib/supabase'
 
 export type AdminSession = { email: string }
 
 /*
   Route guard for /admin/*. This only decides what the UI shows; Row Level
-  Security is what actually protects the data.
+  Security is what actually protects the data. The router imports this
+  eagerly, so the Supabase client is loaded on demand to keep it out of the
+  public bundle.
 */
 export async function requireAdmin({ request }: LoaderFunctionArgs): Promise<AdminSession> {
+  const { supabase } = await import('../lib/supabase')
   const {
     data: { session },
   } = await supabase.auth.getSession()
