@@ -113,6 +113,14 @@ export const router = createBrowserRouter([
     hydrateFallbackElement: <div className="min-h-svh" />,
   },
   {
+    // Full-width article preview, outside the admin layout.
+    path: 'admin/blog/:id/preview',
+    loader: requireAdmin,
+    lazy: lazyPage(() => import('../admin/pages/blog/PostPreview')),
+    errorElement: <AdminError />,
+    hydrateFallbackElement: <div className="min-h-svh" />,
+  },
+  {
     path: 'admin',
     loader: requireAdmin,
     lazy: lazyPage(() => import('../admin/AdminLayout')),
