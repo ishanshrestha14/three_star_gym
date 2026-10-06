@@ -3,6 +3,7 @@ import type { ComponentType } from 'react'
 import { createBrowserRouter } from 'react-router'
 import { AdminError } from '../admin/AdminError'
 import { requireAdmin } from '../admin/guard'
+import { postsQuery } from '../api/blog'
 import { faqsQuery } from '../api/faqs'
 import { galleryQuery } from '../api/gallery'
 import { plansQuery } from '../api/plans'
@@ -83,7 +84,7 @@ export const router = createBrowserRouter([
         lazy: lazyPage(() => import('../pages/TrainerDetail')),
       },
       { path: 'gallery', loader: ensure(galleryQuery), lazy: lazyPage(() => import('../pages/Gallery')) },
-      stub('blog', 'Blog'),
+      { path: 'blog', loader: ensure(postsQuery), lazy: lazyPage(() => import('../pages/Blog')) },
       stub('blog/:slug', 'Article'),
       { path: 'faq', loader: ensure(faqsQuery), lazy: lazyPage(() => import('../pages/Faq')) },
       { path: 'contact', lazy: lazyPage(() => import('../pages/Contact')) },

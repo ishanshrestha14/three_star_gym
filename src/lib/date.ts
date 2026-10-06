@@ -22,3 +22,8 @@ export function formatDateTime(iso: string) {
   const date = new Date(iso)
   return `${full.format(date)}, ${time.format(date)}`
 }
+
+/** "6 Oct 2026" for article bylines. */
+export function formatDate(iso: string) {
+  return full.format(new Date(iso))
+}

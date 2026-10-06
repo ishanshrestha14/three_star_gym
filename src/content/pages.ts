@@ -34,4 +34,9 @@ export const pages = {
     intro: 'The floor, the equipment and the people who train here.',
     seoDescription: 'Photos of the gym: training floor, equipment, classes and members.',
   },
+  blog: {
+    title: 'Latest from\nthe gym.',
+    intro: 'Training advice, nutrition that works with local food, and news from the floor.',
+    seoDescription: 'Training tips, nutrition advice, beginner guides and gym news from our coaches.',
+  },
 }

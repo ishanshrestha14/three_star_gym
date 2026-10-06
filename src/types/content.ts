@@ -146,3 +146,24 @@ export type AboutPageContent = {
   facilities: { heading: string; items: string[]; image: Image }
   community: { heading: string; body: string; image: Image }
 }
+
+export type BlogCategory = { name: string; slug: string }
+
+export type BlogPostSummary = {
+  slug: string
+  title: string
+  excerpt: string
+  coverImage: Image | null
+  authorName: string
+  publishedAt: string
+  isFeatured: boolean
+  category: BlogCategory | null
+}
+
+export type BlogPost = BlogPostSummary & {
+  content: string
+  tags: string[]
+  author: { slug: string; name: string } | null
+  seoTitle: string
+  seoDescription: string
+}
