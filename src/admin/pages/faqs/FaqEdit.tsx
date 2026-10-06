@@ -1,13 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQuery } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router'
 import { z } from 'zod'
-import { contentListQuery, describeError, useSaveContent, type Row } from '../../api/content'
+import { contentListQuery, type Row } from '../../api/content'
 import { ContentEditLoader } from '../../components/ContentEditLoader'
 import { EditPage } from '../../components/EditPage'
 import { AdminField, FormSection, Input, Textarea, Toggle } from '../../components/form'
-import { toast } from '../../toast'
+import { useSaveAndReturn } from '../../useSaveAndReturn'
 import { useUnsavedChanges } from '../../useUnsavedChanges'
 
 const schema = z.object({
@@ -23,8 +22,7 @@ export default function FaqEdit() {
 }
 
 function FaqForm({ row }: { row: Row<'faqs'> | null }) {
-  const navigate = useNavigate()
-  const save = useSaveContent('faqs')
+  const saveAndReturn = useSaveAndReturn('faqs', row, { listPath: '/admin/faqs', noun: 'question' })
   // Offer existing categories so the same group isn't spelled two ways.
   const categories = [...new Set((useQuery(contentListQuery('faqs')).data ?? []).map((faq) => faq.category))]
 
@@ -43,16 +41,7 @@ function FaqForm({ row }: { row: Row<'faqs'> | null }) {
   })
   const { allowNavigation } = useUnsavedChanges(isDirty)
 
-  const onSubmit = handleSubmit(async (values) => {
-    try {
-      await save.mutateAsync({ id: row?.id, values })
-      toast.success(row ? 'Question saved.' : 'Question added.')
-      allowNavigation()
-      navigate('/admin/faqs')
-    } catch (error) {
-      toast.error(describeError(error, 'The question didn’t save. Try again.'))
-    }
-  })
+  const onSubmit = handleSubmit((values) => saveAndReturn(values, { allowNavigation }))
 
   return (
     <EditPage
