@@ -1,16 +1,28 @@
+import type { EnsureQueryDataOptions } from '@tanstack/react-query'
 import type { ComponentType } from 'react'
 import { createBrowserRouter } from 'react-router'
 import { AdminError } from '../admin/AdminError'
 import { requireAdmin } from '../admin/guard'
-import { homepageQuery } from '../api/homepage'
+import { faqsQuery } from '../api/faqs'
 import { plansQuery } from '../api/plans'
+import { sectionsQuery } from '../api/sections'
+import { servicesQuery } from '../api/services'
 import { siteSettingsQuery } from '../api/settings'
+import { testimonialsQuery } from '../api/testimonials'
+import { trainersQuery } from '../api/trainers'
+import { transformationsQuery } from '../api/transformations'
 import { PublicLayout } from '../components/layout/PublicLayout'
 import { queryClient } from '../lib/queryClient'
 import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
 import { PageStub } from '../pages/PageStub'
 import { RouteError } from '../pages/RouteError'
+
+/** Loader that makes sure every listed query is cached before the page renders. */
+const ensure =
+  (...queries: { queryKey: readonly unknown[] }[]) =>
+  () =>
+    Promise.all(queries.map((query) => queryClient.ensureQueryData(query as EnsureQueryDataOptions)))
 
 /** Code-split route: the module's default export becomes the route component. */
 const lazyPage = (load: () => Promise<{ default: ComponentType }>) => async () => ({ Component: (await load()).default })
@@ -26,7 +38,19 @@ export const router = createBrowserRouter([
     loader: () => queryClient.ensureQueryData(siteSettingsQuery),
     hydrateFallbackElement: <div className="min-h-svh" />,
     children: [
-      { index: true, element: <Home />, loader: () => queryClient.ensureQueryData(homepageQuery) },
+      {
+        index: true,
+        element: <Home />,
+        loader: ensure(
+          sectionsQuery,
+          servicesQuery,
+          trainersQuery,
+          plansQuery,
+          faqsQuery,
+          testimonialsQuery,
+          transformationsQuery,
+        ),
+      },
       stub('about', 'About'),
       stub('services', 'Services'),
       stub('services/:slug', 'Service'),

@@ -91,7 +91,7 @@ export type MembershipPlan = {
   isPopular: boolean
 }
 
-export type Faq = { id: string; question: string; answer: string }
+export type Faq = { id: string; question: string; answer: string; category: string }
 
 export type Testimonial = {
   id: string

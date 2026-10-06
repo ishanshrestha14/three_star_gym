@@ -1,4 +1,4 @@
-import { queryOptions } from '@tanstack/react-query'
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { supabase } from '../lib/supabase'
 import type { MembershipPlan } from '../types/content'
 
@@ -21,3 +21,5 @@ async function fetchPlans(): Promise<MembershipPlan[]> {
 }
 
 export const plansQuery = queryOptions({ queryKey: ['plans'], queryFn: fetchPlans })
+
+export const usePlans = () => useSuspenseQuery(plansQuery).data
