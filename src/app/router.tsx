@@ -128,6 +128,7 @@ export const router = createBrowserRouter([
       { path: 'testimonials/:id', lazy: lazyPage(() => import('../admin/pages/testimonials/TestimonialEdit')) },
       { path: 'gallery', lazy: lazyPage(() => import('../admin/pages/gallery/GalleryList')) },
       { path: 'gallery/:id', lazy: lazyPage(() => import('../admin/pages/gallery/GalleryEdit')) },
+      { path: 'settings', lazy: lazyPage(() => import('../admin/pages/Settings')) },
       { path: 'faqs', lazy: lazyPage(() => import('../admin/pages/faqs/FaqList')) },
       { path: 'faqs/:id', lazy: lazyPage(() => import('../admin/pages/faqs/FaqEdit')) },
       { path: 'services', lazy: lazyPage(() => import('../admin/pages/services/ServiceList')) },

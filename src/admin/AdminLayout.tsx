@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { CreditCard, Dumbbell, ExternalLink, HelpCircle, Images, Inbox, MessageSquareQuote, TrendingUp, Users, LayoutDashboard, LogOut, Menu, X } from 'lucide-react'
+import { Settings as SettingsIcon, CreditCard, Dumbbell, ExternalLink, HelpCircle, Images, Inbox, MessageSquareQuote, TrendingUp, Users, LayoutDashboard, LogOut, Menu, X } from 'lucide-react'
 import { useEffect, useState, type ComponentType } from 'react'
 import { Link, NavLink, Outlet, useLoaderData, useNavigate } from 'react-router'
 import { cn } from '../lib/cn'
@@ -26,6 +26,7 @@ const nav: { heading?: string; items: NavItem[] }[] = [
       { to: '/admin/faqs', label: 'FAQs', icon: HelpCircle },
     ],
   },
+  { heading: 'Settings', items: [{ to: '/admin/settings', label: 'Site settings', icon: SettingsIcon }] },
 ]
 
 export default function AdminLayout() {
