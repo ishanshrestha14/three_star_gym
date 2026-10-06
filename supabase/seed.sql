@@ -144,3 +144,100 @@ insert into public.gallery_images (image, caption, category, sort_order, publish
 -- About page (placeholder copy; replace with the gym’s real story)
 insert into public.homepage_sections (key, content) values
   ('about_page', '{"title": "More than\na gym.", "intro": "A training floor in the middle of the neighbourhood, built for people who want to get stronger and stay that way.", "image": {"src": "/placeholder/gym-hall", "alt": "The main training hall", "width": 1280, "height": 853, "widths": [640, 1280]}, "story": {"heading": "How it\nstarted.", "body": "We opened because the city deserved a gym that took training seriously without taking itself too seriously. A place where a first-timer and a competitive lifter can share the floor and both get what they came for.\n\nThe equipment has grown, the team has grown, and the membership has grown. The idea hasn’t changed: good coaching, a clean floor and people who show up for each other."}, "values": {"heading": "What we\nbelieve.", "items": [{"title": "Coaching first", "description": "Equipment matters, but a coach who corrects your form matters more."}, {"title": "Progress over perfection", "description": "Small improvements, every week, add up to results that last."}, {"title": "Everyone belongs", "description": "Beginners, athletes, students, parents. If you want to train, you’re welcome here."}, {"title": "Look after the place", "description": "Re-rack your weights, wipe down the bench, help the person next to you."}]}, "facilities": {"heading": "On the floor", "items": ["Squat racks and lifting platforms", "Barbells, plates and a full dumbbell run", "Cable and resistance machines", "Treadmills, bikes and rowers", "Functional area with ropes, sleds and kettlebells", "Changing rooms, lockers and showers"], "image": {"src": "/placeholder/dumbbell-wall", "alt": "Wall of dumbbells", "width": 1280, "height": 1920, "widths": [640, 1280]}}, "community": {"heading": "Train with\npeople who\nshow up.", "body": "Group classes, weekend sessions and members who notice when you miss a week. The people are why most of our members stay.", "image": {"src": "/placeholder/group-class", "alt": "Members training together in a group class", "width": 1280, "height": 853, "widths": [640, 1280]}}}'::jsonb);
+
+-- Blog posts (placeholder articles; replace or edit in the admin)
+insert into public.blog_posts (slug, title, excerpt, content, cover_image, author_name, trainer_id, category_id, tags, status, published_at, is_featured)
+select 'your-first-week-at-the-gym', 'Your first week at the gym: what to expect', 'Nervous about starting? Here’s exactly what your first week looks like, from the first walk-through to your third session.', $md$Walking into a gym for the first time is the hardest part. Most people who quit do it in the first two weeks, usually because nobody told them what to do. Here's what your first week with us looks like.
+
+## Day one: the walk-through
+
+A coach shows you around the floor, explains how the equipment works and asks about your goal. There's no test and nobody is judging what you can lift.
+
+## Your first sessions
+
+We start with four movement patterns: **squat, hinge, push and pull**. You'll use light weights or just your body weight while you learn them properly.
+
+- Two or three sessions in the first week is plenty
+- Each session takes 45 to 60 minutes
+- Feeling sore for a day or two afterwards is normal
+
+## What to bring
+
+Comfortable clothes, indoor training shoes, a water bottle and a small towel. Lockers are available, so bring a lock if you have one.
+
+## The most important thing
+
+Turn up. Consistency beats intensity, especially early on. If you can train twice a week for a month, you've built a habit, and that's when the real progress starts.$md$, '{"src": "/placeholder/group-class", "alt": "Members in a group class", "width": 1280, "height": 853, "widths": [640, 1280]}'::jsonb, 'Anisha Gurung',
+  (select id from public.trainers where slug = 'anisha-gurung'), (select id from public.blog_categories where slug = 'beginner-guides'),
+  array['beginners', 'getting started']::text[], 'published', now() - interval '3 days', true;
+insert into public.blog_posts (slug, title, excerpt, content, cover_image, author_name, trainer_id, category_id, tags, status, published_at, is_featured)
+select 'eating-for-strength-on-dal-bhat', 'Eating for strength on dal bhat', 'You don’t need imported supplements to build muscle. A few changes to everyday Nepali meals go a long way.', $md$A lot of new members ask which supplements to buy. Our answer is usually: none yet. Get the basics right with the food you already eat.
+
+## Protein first
+
+Muscle is built from protein, and most of us don't eat enough of it. Easy ways to get more from a normal day:
+
+- An extra bowl of **dal**, or a thicker dal
+- **Eggs** at breakfast
+- **Chicken, fish or paneer** with dinner a few times a week
+- **Chana, rajma or soybeans** as a snack or side
+
+## Keep the rice, watch the portion
+
+Rice isn't the enemy. It's fuel for training. If your goal is fat loss, keep the portion steady and add more vegetables and dal instead of more rice.
+
+## Drink water
+
+Most people training in the evening are already dehydrated by the time they arrive. Aim for a full bottle before your session and another during it.
+
+## When to think about supplements
+
+Once you're eating enough protein most days and training consistently for a few months, ask a coach. Until then, food does the job.$md$, '{"src": "/placeholder/mobility", "alt": "Member stretching after training", "width": 1280, "height": 853, "widths": [640, 1280]}'::jsonb, 'Bikash Rai',
+  (select id from public.trainers where slug = 'bikash-rai'), (select id from public.blog_categories where slug = 'nutrition'),
+  array['nutrition', 'muscle']::text[], 'published', now() - interval '10 days', false;
+insert into public.blog_posts (slug, title, excerpt, content, cover_image, author_name, trainer_id, category_id, tags, status, published_at, is_featured)
+select 'squat-hinge-push-pull', 'Squat, hinge, push, pull: the four movements that matter', 'Almost every good strength programme is built on four movement patterns. Learn them well and everything else gets easier.', $md$Strength training can look complicated from the outside. It isn't. Nearly every exercise worth doing is a version of one of four movements.
+
+## Squat
+
+Bending at the knees and hips together, like sitting down and standing up. Builds the legs and teaches your body to stay upright under load.
+
+## Hinge
+
+Bending at the hips with a flat back, like picking something up off the floor. The deadlift is the classic example. It trains the whole back of your body.
+
+## Push
+
+Pushing weight away from you, either forwards (push-ups, bench press) or overhead (shoulder press).
+
+## Pull
+
+Pulling weight towards you: rows, pull-ups and pulldowns. Most people need more pulling than pushing to balance out long days at a desk.
+
+## Putting it together
+
+A simple full-body session picks one exercise from each pattern. Do it two or three times a week, add a little weight when it feels easy, and you have a programme that works for years.$md$, '{"src": "/placeholder/deadlift", "alt": "Barbell set up for a deadlift", "width": 1280, "height": 853, "widths": [640, 1280]}'::jsonb, 'Sagar Thapa',
+  (select id from public.trainers where slug = 'sagar-thapa'), (select id from public.blog_categories where slug = 'training'),
+  array['strength', 'technique']::text[], 'published', now() - interval '17 days', false;
+insert into public.blog_posts (slug, title, excerpt, content, cover_image, author_name, trainer_id, category_id, tags, status, published_at, is_featured)
+select 'why-rest-days-make-you-stronger', 'Why rest days make you stronger', 'Training breaks you down. Recovery is where you actually get fitter. Here’s how to rest properly.', $md$It's tempting to think more training is always better. It isn't. Your body gets stronger *after* a session, while it recovers.
+
+## What happens when you rest
+
+Training puts stress on your muscles. During rest, your body repairs that damage and adapts so the same work feels easier next time. Skip the rest and you skip the adaptation.
+
+## How much rest you need
+
+- At least one full rest day a week
+- 48 hours before training the same muscles hard again
+- 7 to 8 hours of sleep most nights
+
+## Active recovery
+
+Rest doesn't have to mean the sofa. A walk, light cycling or a mobility session keeps you moving without adding more fatigue.
+
+## Signs you need more rest
+
+Constant soreness, poor sleep, weights feeling heavier than usual, or simply not wanting to train. Take an extra day. You won't lose progress, and you'll come back stronger.$md$, '{"src": "/placeholder/squat-bw", "alt": "Member resting between sets", "width": 1280, "height": 853, "widths": [640, 1280]}'::jsonb, 'Prerana Shrestha',
+  (select id from public.trainers where slug = 'prerana-shrestha'), (select id from public.blog_categories where slug = 'fitness'),
+  array['recovery']::text[], 'published', now() - interval '26 days', false;
