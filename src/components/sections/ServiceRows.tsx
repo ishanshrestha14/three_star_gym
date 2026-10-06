@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { Link } from 'react-router'
 import { revealLines } from '../../animations/reveal'
 import { useMotion } from '../../animations/useMotion'
+import { cn } from '../../lib/cn'
 import type { Service } from '../../types/content'
 import { ResponsiveImage } from '../media/ResponsiveImage'
 import { Container } from '../ui/Container'
@@ -12,7 +13,13 @@ import { SectionHeader } from './SectionHeader'
   Full-width rows instead of cards. On hover the service photo opens from a
   slit behind the row and the title steps right. Touch devices get the plain rows.
 */
-export function ServiceRows({ services }: { services: Service[] }) {
+type ServiceRowsProps = {
+  services: Service[]
+  /** Pass null when the page already has its own heading */
+  title?: string | null
+}
+
+export function ServiceRows({ services, title = 'What we do' }: ServiceRowsProps) {
   const ref = useRef<HTMLElement>(null)
 
   useMotion(() => {
@@ -24,9 +31,9 @@ export function ServiceRows({ services }: { services: Service[] }) {
   return (
     <section ref={ref} className="py-24 md:py-32">
       <Container>
-        <SectionHeader title="What we do" link={{ label: 'All services', to: '/services' }} />
+        {title && <SectionHeader title={title} link={{ label: 'All services', to: '/services' }} />}
 
-        <ul className="mt-12 border-t border-chalk/15 md:mt-16">
+        <ul className={cn('border-t border-chalk/15', title && 'mt-12 md:mt-16')}>
           {services.map((service) => (
             <li key={service.slug} className="border-b border-chalk/15">
               <Link

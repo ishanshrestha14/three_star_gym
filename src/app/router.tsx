@@ -52,7 +52,11 @@ export const router = createBrowserRouter([
         ),
       },
       stub('about', 'About'),
-      stub('services', 'Services'),
+      {
+        path: 'services',
+        loader: ensure(servicesQuery, sectionsQuery),
+        lazy: lazyPage(() => import('../pages/Services')),
+      },
       stub('services/:slug', 'Service'),
       stub('membership', 'Membership'),
       stub('trainers', 'Trainers'),
