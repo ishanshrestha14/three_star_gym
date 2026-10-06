@@ -24,4 +24,9 @@ export const pages = {
     intro: 'Everything people usually ask before they join. Can’t find yours? Message us and a coach will reply.',
     seoDescription: 'Answers about membership, prices, free trials, personal training, opening hours and facilities.',
   },
+  contact: {
+    title: 'Visit the\ngym.',
+    intro: 'Drop in during opening hours, call, or send a message. We reply to every enquiry within one working day.',
+    seoDescription: 'Address, opening hours, phone, WhatsApp and directions to the gym.',
+  },
 }

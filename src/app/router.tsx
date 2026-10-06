@@ -81,7 +81,7 @@ export const router = createBrowserRouter([
       stub('blog', 'Blog'),
       stub('blog/:slug', 'Article'),
       { path: 'faq', loader: ensure(faqsQuery), lazy: lazyPage(() => import('../pages/Faq')) },
-      stub('contact', 'Contact'),
+      { path: 'contact', lazy: lazyPage(() => import('../pages/Contact')) },
       {
         path: 'free-trial',
         loader: () => queryClient.ensureQueryData(plansQuery),
