@@ -48,3 +48,46 @@ insert into public.blog_categories (name, slug, sort_order) values
   ('Gym news', 'gym-news', 4),
   ('Beginner guides', 'beginner-guides', 5);
 
+
+-- Service detail copy (placeholder, edit freely)
+update public.services set
+  body = E'Strength is the base for everything else: posture, confidence and staying injury-free as you get older. The floor has squat racks, lifting platforms, barbells and a full run of dumbbells, with coaches nearby to check your setup.\n\nNew to lifting? We start with the basic patterns (squat, hinge, push, pull) and add weight gradually, so you build technique before you chase numbers.',
+  benefits = array['Build muscle and bone density', 'Move better in everyday life', 'See real, measurable progress', 'Lower your risk of injury'],
+  audience = 'Anyone who wants to get stronger, complete beginners included. You don’t need experience, just a willingness to learn the lifts properly.',
+  what_to_expect = 'Your first session covers the core lifts with a coach, using light weights while you learn. From there you follow a simple programme and add weight week by week.'
+where slug = 'strength-training';
+
+update public.services set
+  body = E'One-to-one sessions with a coach who plans every workout around your goal, your schedule and any injuries you’re working around.\n\nYour coach tracks your progress, adjusts the plan as you improve, and makes sure every rep is done properly. It’s the fastest way to learn and the hardest way to skip a session.',
+  benefits = array['A plan built around your goal', 'Form checked on every lift', 'Accountability that keeps you consistent', 'Faster, safer progress'],
+  audience = 'People who want results sooner, beginners who want proper guidance, and anyone returning from an injury or a long break.',
+  what_to_expect = 'We start with a conversation about your goal and a short movement assessment. Your coach then sets a plan, and you train together two to four times a week.'
+where slug = 'personal-training';
+
+update public.services set
+  body = E'Treadmills, bikes, rowers and cross-trainers for conditioning, heart health and fat loss. Use them for a steady warm-up, a long easy session or short, hard intervals.\n\nCoaches can show you how to mix cardio into your strength training so one doesn’t get in the way of the other.',
+  benefits = array['A stronger heart and lungs', 'More energy through the day', 'Support for fat loss', 'Better recovery between sessions'],
+  audience = 'Everyone. Cardio suits every fitness level, and it’s an easy way to start if you’re new to the gym.',
+  what_to_expect = 'A coach shows you how to set up each machine and how hard to work. Most members do 20 to 40 minutes alongside their strength training.'
+where slug = 'cardio';
+
+update public.services set
+  body = E'Coached group sessions that mix strength, conditioning and mobility. A coach leads every class, scales each exercise to your level and keeps the pace up.\n\nClasses are a good way to stay consistent: the time is booked, the workout is planned, and the room keeps you going.',
+  benefits = array['Planned, coached workouts', 'Exercises scaled to your level', 'Energy from training with others', 'A routine that’s easy to stick to'],
+  audience = 'Members who like training with others, or who would rather follow a plan than write one.',
+  what_to_expect = 'Arrive five minutes early and tell the coach if it’s your first class. Sessions run about 45 minutes, including a warm-up and cool-down.'
+where slug = 'group-classes';
+
+update public.services set
+  body = E'Ropes, sleds, kettlebells and bodyweight work for strength you can actually use: lifting, carrying, climbing stairs, playing sport.\n\nFunctional sessions are short and varied, and they build fitness and coordination together.',
+  benefits = array['Strength that carries into daily life', 'Better balance and coordination', 'Conditioning without long cardio sessions', 'Variety that keeps training fresh'],
+  audience = 'Anyone who wants to feel more capable day to day, and athletes who want conditioning for their sport.',
+  what_to_expect = 'A coach introduces each piece of equipment before you use it. Expect circuits of short, hard efforts with rest in between.'
+where slug = 'functional-training';
+
+update public.services set
+  body = E'Training is half of the result. We help you eat in a way that supports your goal without strict diets or food you don’t enjoy.\n\nAdvice is practical and built around local food, your schedule and your budget.',
+  benefits = array['Simple guidelines you can follow', 'Meals built around local food', 'Support for fat loss or muscle gain', 'Regular check-ins on progress'],
+  audience = 'Members who want their nutrition to match their training, whether the goal is losing fat or building muscle.',
+  what_to_expect = 'We look at what you eat now and agree a few small changes. Check-ins track progress and adjust the plan as you go.'
+where slug = 'nutrition';
