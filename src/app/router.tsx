@@ -121,6 +121,7 @@ export const router = createBrowserRouter([
     hydrateFallbackElement: <div className="min-h-svh" />,
   },
   {
+    id: 'admin',
     path: 'admin',
     loader: requireAdmin,
     lazy: lazyPage(() => import('../admin/AdminLayout')),
@@ -142,6 +143,7 @@ export const router = createBrowserRouter([
       { path: 'blog/categories', lazy: lazyPage(() => import('../admin/pages/blog/Categories')) },
       { path: 'blog/:id', lazy: lazyPage(() => import('../admin/pages/blog/PostEdit')) },
       { path: 'settings', lazy: lazyPage(() => import('../admin/pages/Settings')) },
+      { path: 'admins', lazy: lazyPage(() => import('../admin/pages/Admins')) },
       { path: 'faqs', lazy: lazyPage(() => import('../admin/pages/faqs/FaqList')) },
       { path: 'faqs/:id', lazy: lazyPage(() => import('../admin/pages/faqs/FaqEdit')) },
       { path: 'services', lazy: lazyPage(() => import('../admin/pages/services/ServiceList')) },
