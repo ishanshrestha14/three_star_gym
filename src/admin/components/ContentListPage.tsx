@@ -26,6 +26,8 @@ type ContentListPageProps<T extends ContentTable> = {
   emptyBody: ReactNode
   toItem: (row: Row<T>) => Omit<ResourceItem, 'id' | 'published'>
   imagesOf?: (row: Row<T>) => (Image | null | undefined)[]
+  /** Extra tools shown between the header and the list */
+  children?: ReactNode
 }
 
 /* Standard list screen for a content type: header with an add button, then the shared list. */
@@ -39,6 +41,7 @@ export function ContentListPage<T extends ContentTable>({
   emptyBody,
   toItem,
   imagesOf,
+  children,
 }: ContentListPageProps<T>) {
   const list = useQuery(contentListQuery(table))
   const toggle = useTogglePublished(table)
@@ -59,6 +62,7 @@ export function ContentListPage<T extends ContentTable>({
           </Link>
         }
       />
+      {children}
       <ResourceList
         items={list.data?.map((row) => ({
           ...toItem(row),
