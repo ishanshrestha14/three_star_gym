@@ -105,3 +105,23 @@ insert into public.faqs (question, answer, category, sort_order, published) valu
   ('What are your opening hours?', 'Sunday to Friday 5:00 am to 9:00 pm, and Saturday 7:00 am to 12:00 pm.', 'The gym', 13, true),
   ('What equipment do you have?', 'Squat racks, lifting platforms, barbells, a full dumbbell run, cable machines and a cardio area with treadmills, bikes and rowers.', 'The gym', 14, true),
   ('Do you provide diet plans?', 'Yes. Our nutrition coaching gives you simple, realistic eating guidelines built around local food and your goal.', 'Training', 15, true);
+
+-- Trainer bios (placeholder people; replace with the real team). Certifications are
+-- left empty on purpose: only list ones the coach actually holds.
+update public.trainers set
+  bio = E'Sagar has coached on our floor for nine years and leads the coaching team. He specialises in teaching the big lifts, and most of his members come to him having never touched a barbell.\n\nHe’s patient with beginners and demanding with everyone else, and he’ll tell you exactly why each exercise is in your programme.',
+  social_links = '{"instagram": "https://instagram.com/"}'
+where slug = 'sagar-thapa';
+
+update public.trainers set
+  bio = E'Anisha works with people starting from scratch: first-time gym members, people coming back after a long break, and anyone who finds the weights area intimidating.\n\nHer sessions focus on building habits that last, with steady fat loss and strength that shows up in everyday life.',
+  social_links = '{"instagram": "https://instagram.com/"}'
+where slug = 'anisha-gurung';
+
+update public.trainers set
+  bio = E'Bikash coaches members who want to build muscle and get fitter at the same time. His programmes are simple, progressive and tracked week to week.\n\nIf you have trained before but stopped seeing progress, he is the coach to talk to.'
+where slug = 'bikash-rai';
+
+update public.trainers set
+  bio = E'Prerana runs most of our group classes and functional sessions. Her classes are fast, varied and scaled so everyone in the room gets a good workout.\n\nShe also works one to one on mobility for members dealing with stiffness or recovering from injury.'
+where slug = 'prerana-shrestha';
