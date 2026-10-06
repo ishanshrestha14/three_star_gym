@@ -43,7 +43,7 @@ export default function TrainerDetail() {
 
   return (
     <div ref={ref}>
-      <Seo title={`${trainer.name}, ${trainer.position}`} description={trainer.bio.split('\n')[0]} />
+      <Seo title={`${trainer.name}, ${trainer.position}`} description={trainer.bio.split('\n')[0]} image={trainer.photo} />
 
       <Container className="grid gap-10 pt-28 pb-20 md:grid-cols-12 md:gap-8 md:pt-36 md:pb-28">
         <div className="md:col-span-5">

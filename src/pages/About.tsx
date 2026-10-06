@@ -19,7 +19,7 @@ export default function About() {
 
   return (
     <>
-      <Seo title="About" description={page.intro} />
+      <Seo title="About" description={page.intro} image={page.image} />
       <PageHeader title={page.title} intro={page.intro} image={page.image} />
       <Story heading={page.story.heading} body={page.story.body} />
       <StatsStrip stats={stats} />

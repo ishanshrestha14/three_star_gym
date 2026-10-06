@@ -45,7 +45,11 @@ export default function ServiceDetail() {
 
   return (
     <div ref={ref}>
-      <Seo title={service.seoTitle || service.title} description={service.seoDescription || service.shortDescription} />
+      <Seo
+        title={service.seoTitle || service.title}
+        description={service.seoDescription || service.shortDescription}
+        image={service.image}
+      />
 
       <header className="relative isolate flex min-h-[78svh] flex-col justify-end overflow-hidden pt-32 pb-12 md:pb-16">
         <div className="absolute inset-0 -z-10">

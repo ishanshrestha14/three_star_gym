@@ -5,7 +5,7 @@ import { CtaLink } from '../components/ui/CtaLink'
 export default function NotFound() {
   return (
     <>
-      <Seo title="Page not found" />
+      <Seo title="Page not found" noindex />
       <Container className="pt-40 pb-32">
         <h1 className="type-display text-display">Page not found</h1>
         <p className="mt-6 max-w-md text-chalk/70">
