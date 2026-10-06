@@ -14,4 +14,9 @@ export const pages = {
     intro: 'Every plan includes full gym access. Longer plans cost less per month. Not sure which one fits? Try a free session first.',
     seoDescription: 'Gym membership plans and prices in Nepali rupees. Monthly, quarterly, half-year and yearly options.',
   },
+  trainers: {
+    title: 'The\ncoaches.',
+    intro: 'Coaches who walk the floor, learn your name and check your form. Meet the people who’ll train you.',
+    seoDescription: 'Meet our personal trainers and coaches: strength, fat loss, group classes and mobility.',
+  },
 }

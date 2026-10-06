@@ -67,7 +67,11 @@ export const router = createBrowserRouter([
         loader: ensure(plansQuery, faqsQuery, sectionsQuery),
         lazy: lazyPage(() => import('../pages/Membership')),
       },
-      stub('trainers', 'Trainers'),
+      {
+        path: 'trainers',
+        loader: ensure(trainersQuery, sectionsQuery),
+        lazy: lazyPage(() => import('../pages/Trainers')),
+      },
       stub('trainers/:slug', 'Trainer'),
       stub('gallery', 'Gallery'),
       stub('blog', 'Blog'),

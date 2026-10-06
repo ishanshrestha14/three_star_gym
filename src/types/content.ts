@@ -89,6 +89,12 @@ export type Trainer = {
   yearsExperience: number
   specializations: string[]
   photo: Image | null
+  bio: string
+}
+
+export type TrainerDetail = Trainer & {
+  certifications: string[]
+  socialLinks: { instagram?: string; facebook?: string; tiktok?: string }
 }
 
 export type MembershipPlan = {
