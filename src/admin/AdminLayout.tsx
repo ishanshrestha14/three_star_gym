@@ -59,7 +59,7 @@ export default function AdminLayout() {
   const signOut = () => void supabase.auth.signOut()
 
   const sidebar = (
-    <nav aria-label="Admin" className="flex h-full flex-col gap-6 p-4">
+    <nav aria-label="Admin" className="flex min-h-full flex-col gap-6 p-4">
       <Link to="/admin" className="type-display px-2 text-2xl">
         Admin
       </Link>
@@ -121,7 +121,7 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-svh md:grid md:grid-cols-[15rem_1fr]">
-      <aside className="sticky top-0 hidden h-svh border-r border-chalk/10 md:block">{sidebar}</aside>
+      <aside className="sticky top-0 hidden h-svh overflow-y-auto border-r border-chalk/10 md:block">{sidebar}</aside>
 
       <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-chalk/10 bg-graphite px-4 md:hidden">
         <Link to="/admin" className="type-display text-xl">
@@ -139,7 +139,7 @@ export default function AdminLayout() {
         </button>
       </header>
       {menuOpen && (
-        <div id="admin-menu" className="fixed inset-x-0 top-14 bottom-0 z-20 bg-graphite md:hidden">
+        <div id="admin-menu" className="fixed inset-x-0 top-14 bottom-0 z-20 overflow-y-auto bg-graphite md:hidden">
           {sidebar}
         </div>
       )}
