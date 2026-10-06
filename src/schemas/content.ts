@@ -22,6 +22,7 @@ export const imageSchema: z.ZodType<Image> = z.object({
   width: z.number().positive(),
   height: z.number().positive(),
   widths: z.array(z.number().positive()).min(1),
+  ext: z.enum(['webp', 'jpg']).optional(),
 })
 
 const ctaSchema: z.ZodType<Cta> = z.object({

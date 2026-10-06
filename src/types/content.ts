@@ -12,6 +12,8 @@ export type Image = {
   height: number
   /** Widths that exist on disk / in storage */
   widths: number[]
+  /** File format; omitted means webp. Browsers that can't encode webp upload jpg. */
+  ext?: 'webp' | 'jpg'
 }
 
 export type Cta = { label: string; to: string }
