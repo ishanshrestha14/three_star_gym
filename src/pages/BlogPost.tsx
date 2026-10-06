@@ -13,6 +13,7 @@ import { Seo } from '../components/seo/Seo'
 import { Container } from '../components/ui/Container'
 import { CtaLink } from '../components/ui/CtaLink'
 import { imageFallback } from '../lib/media'
+import { absoluteUrl, siteUrl } from '../lib/url'
 import NotFound from './NotFound'
 
 const readingMinutes = (text: string) => Math.max(1, Math.round(text.split(/\s+/).length / 200))
@@ -37,7 +38,12 @@ export default function BlogPost() {
 
   return (
     <article ref={ref}>
-      <Seo title={post.seoTitle || post.title} description={post.seoDescription || post.excerpt} />
+      <Seo
+        title={post.seoTitle || post.title}
+        description={post.seoDescription || post.excerpt}
+        image={post.coverImage}
+        type="article"
+      />
       <JsonLd
         data={{
           '@context': 'https://schema.org',
@@ -45,9 +51,10 @@ export default function BlogPost() {
           headline: post.title,
           description: post.excerpt,
           datePublished: post.publishedAt,
-          image: post.coverImage ? new URL(imageFallback(post.coverImage), window.location.origin).href : undefined,
+          image: post.coverImage ? absoluteUrl(imageFallback(post.coverImage)) : undefined,
+          mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
           author: { '@type': 'Person', name: post.authorName || site.name },
-          publisher: { '@type': 'Organization', name: site.name },
+          publisher: { '@type': 'Organization', name: site.name, url: `${siteUrl}/` },
         }}
       />
 
