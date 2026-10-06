@@ -45,8 +45,9 @@ Removing the row from `public.admins` removes admin access immediately.
 ## Connecting the hosted Supabase project
 
 1. Create a project at supabase.com (free tier).
-2. `supabase link --project-ref <ref>` then `supabase db push` to apply migrations.
-3. Load the placeholder content once: paste `supabase/seed.sql` into the SQL editor.
+2. `supabase login` and `supabase link --project-ref <ref>` (run these in a normal terminal).
+3. `supabase db push --include-seed` applies the migrations and loads the placeholder content.
+   Use plain `supabase db push` for later migrations so the seed isn't loaded twice.
 4. **Authentication → Sign In / Providers**: turn **off** "Allow new users to sign up";
    keep the Email provider **on**.
 5. **Authentication → URL Configuration**: set the Site URL to the live site and add
