@@ -62,7 +62,11 @@ export const router = createBrowserRouter([
         loader: ({ params }) => ensure(serviceQuery(params.slug ?? ''), servicesQuery, sectionsQuery)(),
         lazy: lazyPage(() => import('../pages/ServiceDetail')),
       },
-      stub('membership', 'Membership'),
+      {
+        path: 'membership',
+        loader: ensure(plansQuery, faqsQuery, sectionsQuery),
+        lazy: lazyPage(() => import('../pages/Membership')),
+      },
       stub('trainers', 'Trainers'),
       stub('trainers/:slug', 'Trainer'),
       stub('gallery', 'Gallery'),

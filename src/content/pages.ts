@@ -9,4 +9,9 @@ export const pages = {
     intro: 'One training floor, six ways to use it. Pick what fits your goal, or ask a coach to help you choose.',
     seoDescription: 'Strength training, personal training, cardio, group classes, functional training and nutrition coaching.',
   },
+  membership: {
+    title: 'Membership.',
+    intro: 'Every plan includes full gym access. Longer plans cost less per month. Not sure which one fits? Try a free session first.',
+    seoDescription: 'Gym membership plans and prices in Nepali rupees. Monthly, quarterly, half-year and yearly options.',
+  },
 }
