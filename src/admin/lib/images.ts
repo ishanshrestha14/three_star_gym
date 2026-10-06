@@ -55,8 +55,10 @@ export async function uploadImage(file: File, folder: MediaFolder, alt = ''): Pr
   const ext = (await canEncodeWebp()) ? 'webp' : 'jpg'
   const type = ext === 'webp' ? 'image/webp' : 'image/jpeg'
   const base = `${folder}/${crypto.randomUUID()}`
-  const widths = targetWidths(bitmap.width)
-  const heightFor = (width: number) => Math.round((bitmap.height * width) / bitmap.width)
+  // Read dimensions up front: a closed bitmap reports 0×0.
+  const { width: naturalWidth, height: naturalHeight } = bitmap
+  const widths = targetWidths(naturalWidth)
+  const heightFor = (width: number) => Math.round((naturalHeight * width) / naturalWidth)
   const uploaded: string[] = []
 
   try {
