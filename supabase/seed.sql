@@ -125,3 +125,18 @@ where slug = 'bikash-rai';
 update public.trainers set
   bio = E'Prerana runs most of our group classes and functional sessions. Her classes are fast, varied and scaled so everyone in the room gets a good workout.\n\nShe also works one to one on mobility for members dealing with stiffness or recovering from injury.'
 where slug = 'prerana-shrestha';
+
+-- Gallery (temporary Unsplash photos; replace with real gym photography)
+insert into public.gallery_images (image, caption, category, sort_order, published) values
+  ('{"src": "/placeholder/gym-hall", "alt": "Training hall with cardio machines", "width": 1280, "height": 854, "widths": [640, 1280]}'::jsonb, 'The main training hall', 'facilities', 0, true),
+  ('{"src": "/placeholder/deadlift", "alt": "Member setting up a deadlift", "width": 1280, "height": 853, "widths": [640, 1280]}'::jsonb, '', 'training', 1, true),
+  ('{"src": "/placeholder/dumbbell-wall", "alt": "Wall of dumbbells", "width": 1280, "height": 1920, "widths": [640, 1280]}'::jsonb, 'Dumbbells up to 50 kg', 'equipment', 2, true),
+  ('{"src": "/placeholder/group-class", "alt": "Members in a group mat class", "width": 1280, "height": 853, "widths": [640, 1280]}'::jsonb, 'Saturday group class', 'members', 3, true),
+  ('{"src": "/placeholder/squat-bw", "alt": "Member preparing to squat", "width": 1280, "height": 854, "widths": [640, 1280]}'::jsonb, '', 'training', 4, true),
+  ('{"src": "/placeholder/gym-floor", "alt": "Rows of dumbbells on the training floor", "width": 1280, "height": 853, "widths": [640, 1280]}'::jsonb, '', 'equipment', 5, true),
+  ('{"src": "/placeholder/battle-ropes", "alt": "Member training with battle ropes", "width": 1280, "height": 855, "widths": [640, 1280]}'::jsonb, 'Functional training', 'training', 6, true),
+  ('{"src": "/placeholder/rack-pull", "alt": "Member pressing a barbell in the rack", "width": 1280, "height": 854, "widths": [640, 1280]}'::jsonb, '', 'training', 7, true),
+  ('{"src": "/placeholder/mobility", "alt": "Member stretching on a mat", "width": 1280, "height": 853, "widths": [640, 1280]}'::jsonb, '', 'members', 8, true),
+  ('{"src": "/placeholder/dumbbell-row", "alt": "Dumbbell row on the bench", "width": 1280, "height": 853, "widths": [640, 1280]}'::jsonb, '', 'training', 9, true),
+  ('{"src": "/placeholder/deadlift-close", "alt": "Hands gripping a loaded barbell", "width": 1280, "height": 853, "widths": [640, 1280, 2048]}'::jsonb, '', 'training', 10, true),
+  ('{"src": "/placeholder/hero", "alt": "Lifter in a dark training hall", "width": 1280, "height": 853, "widths": [640, 1280, 2048]}'::jsonb, '', 'gym', 11, true);
