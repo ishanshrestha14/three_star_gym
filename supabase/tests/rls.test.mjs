@@ -80,7 +80,8 @@ r = await admin.from('transformations').insert({ person_name: 'X', before_image:
 check('transformation cannot publish without consent', !!r.error)
 r = await admin.from('blog_posts').insert({ slug: 'future', title: 'Future', status: 'published', published_at: new Date(Date.now() + 86400000).toISOString() })
 check('admin can schedule post', !r.error, JSON.stringify(r.error))
-check('scheduled post hidden from public', ((await anon.from('blog_posts').select('id')).data ?? []).length === 0)
+check('scheduled post hidden from public', ((await anon.from('blog_posts').select('id').eq('slug', 'future')).data ?? []).length === 0)
+check('published posts visible to public', ((await anon.from('blog_posts').select('id').neq('slug', 'future')).data ?? []).length > 0)
 
 // storage
 const png = new Blob([new Uint8Array([0x52,0x49,0x46,0x46])], { type: 'image/webp' })
