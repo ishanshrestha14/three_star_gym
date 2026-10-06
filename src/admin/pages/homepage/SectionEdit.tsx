@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
-import { aboutSchema, heroSchema, parseOrNull, statsSchema, trialCtaSchema, whyUsSchema } from '../../../schemas/content'
+import { aboutPageSchema, aboutSchema, heroSchema, parseOrNull, statsSchema, trialCtaSchema, whyUsSchema } from '../../../schemas/content'
 import { adminSectionsQuery } from '../../api/sections'
 import { EmptyState, ErrorState, LoadingRows, Panel } from '../../components/ui'
+import { AboutPageForm } from './AboutPageForm'
 import { HeroForm } from './HeroForm'
 import { IntroForm } from './IntroForm'
 import { StatsForm } from './StatsForm'
@@ -28,6 +29,8 @@ export default function SectionEdit() {
       return <IntroForm content={parseOrNull(aboutSchema, content, 'introduction')} />
     case 'why_us':
       return <WhyUsForm content={parseOrNull(whyUsSchema, content, 'why us')} />
+    case 'about_page':
+      return <AboutPageForm content={parseOrNull(aboutPageSchema, content, 'about page')} />
     case 'trial_cta':
       return <TrialCtaForm content={parseOrNull(trialCtaSchema, content, 'trial CTA')} />
     default:
