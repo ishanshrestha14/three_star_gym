@@ -8,14 +8,20 @@
 
     <!--
       Static defaults. Link previews (WhatsApp, Facebook) don't run JavaScript,
-      so these are what every shared link shows. Keep in sync with src/content/site.ts.
+      so these are what every shared link shows. Keep the name and description in
+      sync with Admin → Settings. %VITE_SITE_URL% is filled in at build time.
     -->
     <title>Three Star Fitness — Gym in Kathmandu</title>
     <meta name="description" content="Strength training, personal coaching and group classes in Kathmandu. Book a free trial session." />
+    <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Three Star Fitness" />
     <meta property="og:title" content="Three Star Fitness — Gym in Kathmandu" />
     <meta property="og:description" content="Strength training, personal coaching and group classes in Kathmandu. Book a free trial session." />
-    <meta property="og:image" content="/og-default.jpg" />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og-default.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
