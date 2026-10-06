@@ -55,6 +55,23 @@ Removing the row from `public.admins` removes admin access immediately.
 6. Put the project URL and publishable (anon) key in `.env.local` and in Vercel's
    environment variables. Never use the secret / service-role key in the frontend.
 
+## Deploying to Vercel
+
+1. Push the repo to GitHub, then on vercel.com: **Add New → Project**, import it.
+   Vercel detects Vite; keep the default build command and `dist` output.
+2. **Environment variables** (Production and Preview):
+   - `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`: same values as `.env.local`.
+   - `VITE_SITE_URL`: the public address, e.g. `https://threestargym.com.np`. Optional
+     until the custom domain is live; the build falls back to the `*.vercel.app` domain.
+3. Deploy. Then in Supabase **Authentication → URL Configuration**, set the Site URL to
+   the live address and add `https://<domain>/admin/reset-password` as a redirect URL.
+4. After adding a custom domain, set `VITE_SITE_URL` to it and redeploy, so canonical
+   links, share previews and the sitemap use the real domain.
+5. Submit `https://<domain>/sitemap.xml` in Google Search Console.
+
+`sitemap.xml` and `robots.txt` are generated during the build from published blog posts,
+services and trainers, so a new post appears in the sitemap after the next deploy.
+
 ## Where things live
 
 ```
@@ -64,7 +81,7 @@ src/
   admin/        admin panel (lazy-loaded; never shipped to visitors up front)
   animations/   GSAP setup and reusable motion helpers
   components/   layout, homepage sections, forms, shared UI
-  schemas/      Zod schemas shared by the site and the admin
+  schemas/      Zod (zod/mini) schemas shared by the site and the admin
   styles/       Tailwind design tokens (change --color-accent for the brand colour)
 supabase/
   migrations/   schema, RLS policies, storage bucket
@@ -73,4 +90,5 @@ supabase/
 ```
 
 Placeholder photos in `public/placeholder/` are temporary Unsplash images.
-The default page title and link-preview text live in `index.html`.
+The default page title and link-preview text live in `index.html`; the default share
+image is `public/og-default.jpg`, made from `scripts/og-image.html`.
