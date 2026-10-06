@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { Settings as SettingsIcon, CreditCard, Dumbbell, ExternalLink, HelpCircle, Images, Inbox, MessageSquareQuote, TrendingUp, Users, LayoutDashboard, LogOut, Menu, X } from 'lucide-react'
+import { Settings as SettingsIcon, CreditCard, Home, Dumbbell, ExternalLink, HelpCircle, Images, Inbox, MessageSquareQuote, TrendingUp, Users, LayoutDashboard, LogOut, Menu, X } from 'lucide-react'
 import { useEffect, useState, type ComponentType } from 'react'
 import { Link, NavLink, Outlet, useLoaderData, useNavigate } from 'react-router'
 import { cn } from '../lib/cn'
@@ -17,6 +17,7 @@ const nav: { heading?: string; items: NavItem[] }[] = [
   {
     heading: 'Content',
     items: [
+      { to: '/admin/homepage', label: 'Homepage', icon: Home },
       { to: '/admin/services', label: 'Services', icon: Dumbbell },
       { to: '/admin/trainers', label: 'Trainers', icon: Users },
       { to: '/admin/memberships', label: 'Memberships', icon: CreditCard },
