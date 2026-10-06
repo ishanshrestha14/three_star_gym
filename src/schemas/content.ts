@@ -16,7 +16,8 @@ import type {
   WhyUsContent,
 } from '../types/content'
 
-export const imageSchema: z.ZodType<Image> = z.object({
+// Typed on both sides so forms can use it with React Hook Form.
+export const imageSchema: z.ZodType<Image, Image> = z.object({
   src: z.string().min(1),
   alt: z.string(),
   width: z.number().positive(),
