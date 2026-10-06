@@ -19,4 +19,9 @@ export const pages = {
     intro: 'Coaches who walk the floor, learn your name and check your form. Meet the people who’ll train you.',
     seoDescription: 'Meet our personal trainers and coaches: strength, fat loss, group classes and mobility.',
   },
+  faq: {
+    title: 'Questions,\nanswered.',
+    intro: 'Everything people usually ask before they join. Can’t find yours? Message us and a coach will reply.',
+    seoDescription: 'Answers about membership, prices, free trials, personal training, opening hours and facilities.',
+  },
 }

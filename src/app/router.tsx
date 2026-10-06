@@ -80,7 +80,7 @@ export const router = createBrowserRouter([
       stub('gallery', 'Gallery'),
       stub('blog', 'Blog'),
       stub('blog/:slug', 'Article'),
-      stub('faq', 'FAQ'),
+      { path: 'faq', loader: ensure(faqsQuery), lazy: lazyPage(() => import('../pages/Faq')) },
       stub('contact', 'Contact'),
       {
         path: 'free-trial',
