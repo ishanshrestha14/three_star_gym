@@ -136,3 +136,13 @@ export type GalleryImage = {
   caption: string
   category: GalleryCategory
 }
+
+export type AboutPageContent = {
+  title: string
+  intro: string
+  image: Image
+  story: { heading: string; body: string }
+  values: WhyUsContent
+  facilities: { heading: string; items: string[]; image: Image }
+  community: { heading: string; body: string; image: Image }
+}
