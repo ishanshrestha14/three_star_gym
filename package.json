@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:rls": "supabase db reset >/dev/null && env $(supabase status -o env | xargs) node supabase/tests/rls.test.mjs",
+    "test:rls": "supabase db reset --local >/dev/null && env $(supabase status -o env | grep -E '^(API_URL|PUBLISHABLE_KEY|SECRET_KEY)=' | xargs) node supabase/tests/rls.test.mjs",
     "db:types": "supabase gen types typescript --local > src/types/database.ts"
   },
   "dependencies": {
