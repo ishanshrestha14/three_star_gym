@@ -38,6 +38,7 @@ export const heroSchema: z.ZodMiniType<HeroContent, HeroContent> = z.object({
   primaryCta: ctaSchema,
   secondaryCta: ctaSchema,
   image: imageSchema,
+  background: z.optional(z.enum(['image', 'video'])),
 })
 
 export const statsSchema: z.ZodMiniType<{ items: Stat[] }, { items: Stat[] }> = z.object({

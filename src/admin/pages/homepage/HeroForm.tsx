@@ -2,9 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { heroSchema } from '../../../schemas/content'
 import type { HeroContent } from '../../../types/content'
+import { heroVideo } from '../../../content/heroVideo'
 import { CtaFields } from '../../components/CtaFields'
 import { EditPage } from '../../components/EditPage'
-import { AdminField, FormSection, Input, Textarea } from '../../components/form'
+import { AdminField, FormSection, Input, Select, Textarea } from '../../components/form'
 import { ImageField } from '../../components/ImageField'
 import { onInvalid } from '../../useSaveAndReturn'
 import { useUnsavedChanges } from '../../useUnsavedChanges'
@@ -16,6 +17,7 @@ const empty: HeroContent = {
   primaryCta: { label: 'Start your journey', to: '/free-trial' },
   secondaryCta: { label: 'Explore memberships', to: '/membership' },
   image: null as unknown as HeroContent['image'],
+  background: 'video',
 }
 
 export function HeroForm({ content }: { content: HeroContent | null }) {
@@ -26,7 +28,7 @@ export function HeroForm({ content }: { content: HeroContent | null }) {
     handleSubmit,
     reset,
     formState: { errors, isDirty, isSubmitting },
-  } = useForm<HeroContent>({ resolver: zodResolver(heroSchema), defaultValues: content ?? empty })
+  } = useForm<HeroContent>({ resolver: zodResolver(heroSchema), defaultValues: content ? { background: 'video', ...content } : empty })
   useUnsavedChanges(isDirty)
 
   const onSubmit = handleSubmit(async (values) => {
@@ -51,7 +53,20 @@ export function HeroForm({ content }: { content: HeroContent | null }) {
         <CtaFields register={register} name="primaryCta" label="Main button" errors={errors} />
         <CtaFields register={register} name="secondaryCta" label="Second button" errors={errors} />
       </FormSection>
-      <FormSection title="Background photo" description="The first thing visitors see. Use a dark, atmospheric landscape photo with space for the headline. It shows while the background video loads, and instead of it for visitors saving mobile data.">
+      <FormSection title="Background" description="The first thing visitors see. Use a dark, atmospheric landscape photo with space for the headline.">
+        {heroVideo && (
+          <AdminField
+            label="Show"
+            hint="The video is the clip that ships with the website. The photo below still shows while it loads, and instead of it for visitors saving mobile data."
+          >
+            {(a11y) => (
+              <Select {...a11y} {...register('background')}>
+                <option value="video">Video</option>
+                <option value="image">Photo only</option>
+              </Select>
+            )}
+          </AdminField>
+        )}
         <Controller
           control={control}
           name="image"

@@ -46,6 +46,8 @@ export type HeroContent = {
   primaryCta: Cta
   secondaryCta: Cta
   image: Image
+  /** "video" plays the clip from src/content/heroVideo.ts over the photo; missing = video */
+  background?: 'image' | 'video'
 }
 
 export type Stat = { value: string; label: string }
