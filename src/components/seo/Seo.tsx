@@ -38,7 +38,7 @@ export function Seo({ title, description: pageDescription, image, type = 'websit
   const site = useSiteSettings()
   const { pathname } = useLocation()
   const description = pageDescription ?? site.description
-  const fullTitle = title ? `${title} | ${site.name}` : `${site.name} — Gym in ${site.city}`
+  const fullTitle = title ? `${title} | ${site.name}` : `${site.name} — ${site.area}, ${site.city}`
   const url = absoluteUrl(pathname)
   const imageHref = absoluteUrl(image ? imageFallback(image) : '/og-default.jpg')
 
