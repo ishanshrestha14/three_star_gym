@@ -24,7 +24,7 @@ without approval. Tick the checklists and fill in the decisions log as steps lan
 | 1. Page transitions | Done (awaiting approval) |
 | 2. Launch QA pass | Done (awaiting approval) |
 | 3. Public empty and error states | Done (awaiting approval) |
-| 4. Click analytics | Not started |
+| 4. Click analytics | Built; needs the Umami website ID |
 | Making it ours (ongoing) | Hero headline and video done |
 
 ## Already in place
@@ -202,33 +202,40 @@ an outage.
 Count the actions that matter to the gym owner (PRD §44), so they can see which pages and buttons bring in
 members.
 
+**Provider: Umami Cloud, free Hobby plan.** 100K events a month, 6 months of history, custom events, no
+cookies (no consent banner), 2.3 KB script loaded after the page. Vercel Web Analytics was the first
+proposal, but its free plan has no custom events (Pro only, about $20/month).
+
 **Events**
 
-| Event | Fired when |
-| --- | --- |
-| `page_view` | Any public page loads (automatic) |
-| `cta_click` | A primary CTA is clicked, tagged with its label and page |
-| `free_trial_started` | The free trial page opens |
-| `membership_viewed` | The membership page opens |
-| `enquiry_submitted` | An enquiry is saved, tagged with its source |
-| `phone_clicked` | A `tel:` link is clicked |
-| `whatsapp_clicked` | A WhatsApp link is clicked |
-| `directions_clicked` | The map or directions link is clicked |
-| `blog_view` | A blog post opens, tagged with its slug |
+| Event | Fired when | Data |
+| --- | --- | --- |
+| Page view | Any public page loads, including in-site navigation (automatic) | URL |
+| `cta_click` | A button-style link (`CtaLink`, mobile bar "Free trial") is clicked | `label`, `page`, `area` |
+| `phone_clicked` | Any `tel:` link is clicked | `page`, `area` |
+| `whatsapp_clicked` | Any `wa.me` link is clicked | `page`, `area` |
+| `directions_clicked` | Any Google Maps link is clicked | `page`, `area` |
+| `enquiry_submitted` | An enquiry is saved | `source` (contact, free_trial…) |
 
-**Provider (proposed):** Vercel Web Analytics. It's built into the host, uses no cookies (so no consent
-banner), and its free tier should cover a local gym's traffic. Custom events need checking against the free
-plan before we commit; the alternative is a free self-hosted option such as Umami.
+`area` is `header`, `footer`, `mobile_bar` or `page`. "Membership viewed", "blog view" and "free trial
+started" from the PRD are read from page views of `/membership`, `/blog/*` and `/free-trial` instead of
+separate events, to save the monthly allowance.
 
-**Rules:** one small `track()` helper so the provider can be swapped later; no personal data in events
-(no names, phone numbers or emails); admin pages are never tracked.
+**How it works:** `src/lib/analytics.ts` loads the script only when `VITE_UMAMI_WEBSITE_ID` is set (Vercel
+Production only), locks it to the production domain (`data-domains`), drops anything from `/admin` before it
+is sent (`data-before-send`), and uses one document-level click listener, so new phone, WhatsApp, map and
+CTA links are counted without extra code. No names, phone numbers or emails are sent.
+
+**Known gap:** visitors using Brave or an ad blocker aren't counted, because those block Umami's script.
+Expect the numbers to read somewhat low.
 
 **Done when**
 
-- [ ] Provider chosen and recorded in the decisions log
-- [ ] All events above fire on the live site and show in the dashboard
-- [ ] Public JS cost of the script recorded
-- [ ] The owner knows where to see the numbers
+- [x] Provider chosen and recorded in the decisions log
+- [ ] All events above fire on the live site and show in the dashboard (verified locally against
+      intercepted requests; live check waits for the website ID)
+- [x] Public JS cost recorded: +0.5 KB gz in the bundle, plus the 2.3 KB gz Umami script after load
+- [ ] The owner knows where to see the numbers (cloud.umami.is login)
 
 ## Ongoing — Making it ours
 
@@ -269,7 +276,6 @@ own. Nothing here blocks the four steps; items are picked up one at a time betwe
 
 **Open questions**
 
-- Does the gym owner want click analytics at all? (Step 4)
 - Real brand colour and logo: does the gym have them, or do we design the Three Star mark?
 - When will real photos of the gym be available?
 - Custom domain (`.com.np` needs the owner's business documents)
@@ -278,6 +284,7 @@ own. Nothing here blocks the four steps; items are picked up one at a time betwe
 
 | Date | Decision |
 | --- | --- |
+| 2026-10-07 | Analytics: Umami Cloud free plan (Vercel free plan has no custom events) |
 | 2026-10-07 | Error page contact details come from a build-time snapshot, not live data |
 | 2026-10-07 | React Query is the only retry layer for public data (PostgREST client retries off) |
 | 2026-10-07 | Orange button contrast (3.5:1) left as is until the real brand colour is decided |
