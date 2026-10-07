@@ -86,7 +86,6 @@ services and trainers, so a new post appears in the sitemap after the next deplo
 | `docs/remaining-work.md` | Everything still open: visuals, real content, domain, follow-ups |
 | `docs/phase-6-polish.md` | Phase 6 (polish) plan, results and decisions log |
 | `docs/local-seo.md` | Getting found on Google near the gym |
-| `docs/owner-pitch.md` | Notes for pitching the website to the gym owner |
 
 ## Where things live
 
