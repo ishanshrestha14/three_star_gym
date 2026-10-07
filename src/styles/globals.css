@@ -15,8 +15,8 @@
   --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
 
   /* Fluid display scale */
-  --text-mega: clamp(4.25rem, 14vw, 13.5rem);
-  --text-mega--line-height: 0.84;
+  --text-hero: clamp(2.75rem, 8.5vw, 8rem);
+  --text-hero--line-height: 0.86;
   --text-title: clamp(3.5rem, 10vw, 10rem);
   --text-title--line-height: 0.86;
   --text-display: clamp(2.75rem, 7vw, 6.5rem);

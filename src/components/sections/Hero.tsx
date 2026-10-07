@@ -40,8 +40,9 @@ export function Hero({ content }: { content: HeroContent }) {
         <div data-hero-media className="h-full w-full">
           <ResponsiveImage image={content.image} sizes="100vw" priority className="h-full w-full object-cover object-[60%_center]" />
         </div>
-        {/* Scrim keeps the nav and headline legible on any photo */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(26_27_29/0.7)_0%,rgb(26_27_29/0.15)_30%,rgb(26_27_29/0.35)_60%,var(--color-graphite)_100%)]" />
+        {/* Scrims: top keeps the nav legible, bottom-left sits behind the headline so the rest of the frame stays clear */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(26_27_29/0.6)_0%,rgb(26_27_29/0)_25%,rgb(26_27_29/0)_55%,var(--color-graphite)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_0%_100%,rgb(26_27_29/0.75)_0%,rgb(26_27_29/0)_60%)]" />
       </div>
 
       <Container className="flex flex-1 flex-col justify-end pb-24 md:pb-10">
@@ -49,10 +50,10 @@ export function Hero({ content }: { content: HeroContent }) {
           <MaskedLines
             as="h1"
             text={content.heading}
-            className="type-display text-mega xl:col-span-12 xl:col-start-1 xl:row-start-1"
+            className="type-display text-hero xl:col-span-7"
             lineClassName="whitespace-nowrap [font-stretch:74%]"
           />
-          <div data-hero-copy className="xl:col-span-4 xl:col-start-9 xl:row-start-1 xl:pb-[1.2vw]">
+          <div data-hero-copy className="xl:col-span-4 xl:col-start-9 xl:pb-[0.6vw]">
             <p className="max-w-sm text-lg text-chalk/80 md:text-xl">{content.subheading}</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <CtaLink to={content.primaryCta.to}>{content.primaryCta.label}</CtaLink>
