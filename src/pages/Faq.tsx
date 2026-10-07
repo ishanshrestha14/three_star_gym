@@ -3,6 +3,7 @@ import { fadeUp } from '../animations/reveal'
 import { useMotion } from '../animations/useMotion'
 import { useFaqs } from '../api/faqs'
 import { useSiteSettings } from '../api/settings'
+import { EmptyState } from '../components/content/EmptyState'
 import { FaqAccordion } from '../components/content/FaqAccordion'
 import { PageHeader } from '../components/sections/PageHeader'
 import { JsonLd } from '../components/seo/JsonLd'
@@ -32,21 +33,26 @@ export default function Faq() {
   return (
     <>
       <Seo title="FAQ" description={pages.faq.seoDescription} />
-      <JsonLd
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faqs.map((faq) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-          })),
-        }}
-      />
+      {faqs.length > 0 && (
+        <JsonLd
+          data={{
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqs.map((faq) => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+            })),
+          }}
+        />
+      )}
       <PageHeader title={pages.faq.title} intro={pages.faq.intro} />
 
       <div ref={ref} className="py-16 md:py-28">
         <Container className="space-y-16 md:space-y-24">
+          {faqs.length === 0 && (
+            <EmptyState title="Answers coming soon" body="Ask us anything below and a coach will get back to you." />
+          )}
           {groupByCategory(faqs).map(([category, items]) => (
             <section key={category} data-faq-group className="grid gap-6 md:grid-cols-12 md:gap-8">
               <h2 className="type-display text-headline md:col-span-4">{category}</h2>
