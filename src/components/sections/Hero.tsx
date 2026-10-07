@@ -41,7 +41,7 @@ export function Hero({ content }: { content: HeroContent }) {
       <div className="absolute inset-0 -z-10">
         <div data-hero-media className="relative h-full w-full">
           <ResponsiveImage image={content.image} sizes="100vw" priority className="h-full w-full object-cover object-[60%_center]" />
-          {heroVideo && <HeroVideo {...heroVideo} className="absolute inset-0 h-full w-full object-cover" />}
+          {heroVideo && <HeroVideo {...heroVideo} className="absolute inset-0 h-full w-full object-cover object-[70%_center]" />}
         </div>
         {/* Scrims: top keeps the nav legible, bottom-left sits behind the headline so the rest of the frame stays clear */}
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(26_27_29/0.6)_0%,rgb(26_27_29/0)_25%,rgb(26_27_29/0)_55%,var(--color-graphite)_100%)]" />
