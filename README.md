@@ -63,6 +63,8 @@ Removing the row from `public.admins` removes admin access immediately.
    - `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`: same values as `.env.local`.
    - `VITE_SITE_URL`: the public address, e.g. `https://threestargym.com.np`. Optional
      until the custom domain is live; the build falls back to the `*.vercel.app` domain.
+   - `VITE_UMAMI_WEBSITE_ID` (**Production only**): the website ID from cloud.umami.is.
+     Without it no analytics load; keeping it off Preview means test deploys aren't counted.
 3. Deploy. Then in Supabase **Authentication → URL Configuration**, set the Site URL to
    the live address and add `https://<domain>/admin/reset-password` as a redirect URL.
 4. After adding a custom domain, set `VITE_SITE_URL` to it and redeploy, so canonical
