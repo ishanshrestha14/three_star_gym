@@ -57,6 +57,9 @@ Removing the row from `public.admins` removes admin access immediately.
 
 ## Deploying to Vercel
 
+After the first setup below, the live site only updates when a GitHub release is published; merging
+into `main` doesn't deploy. See `docs/releasing.md`.
+
 1. Push the repo to GitHub, then on vercel.com: **Add New → Project**, import it.
    Vercel detects Vite; keep the default build command and `dist` output.
 2. **Environment variables** (Production and Preview):
@@ -79,6 +82,7 @@ services and trainers, so a new post appears in the sitemap after the next deplo
 | File | What it is |
 | --- | --- |
 | `PRD.md` | Product requirements |
+| `docs/releasing.md` | How the live site is updated: publish a GitHub release |
 | `docs/remaining-work.md` | Everything still open: visuals, real content, domain, follow-ups |
 | `docs/phase-6-polish.md` | Phase 6 (polish) plan, results and decisions log |
 | `docs/local-seo.md` | Getting found on Google near the gym |
