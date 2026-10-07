@@ -20,7 +20,7 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          'fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-300',
+          'fixed inset-x-0 top-0 z-50 border-b [view-transition-name:site-header] transition-[background-color,border-color,backdrop-filter] duration-300',
           solid ? 'border-chalk/10 bg-graphite/80 backdrop-blur-md' : 'border-transparent',
         )}
       >

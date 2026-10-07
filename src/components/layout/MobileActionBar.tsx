@@ -7,7 +7,7 @@ import { telHref, whatsappHref } from '../../lib/contact'
 export function MobileActionBar() {
   const site = useSiteSettings()
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-[1fr_1fr_1.4fr] border-t border-chalk/10 bg-graphite/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-30 grid [view-transition-name:mobile-actions] grid-cols-[1fr_1fr_1.4fr] border-t border-chalk/10 bg-graphite/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden">
       <a href={telHref(site.phone)} className="flex h-14 items-center justify-center gap-2 text-sm font-semibold">
         <Phone aria-hidden className="size-4" />
         Call

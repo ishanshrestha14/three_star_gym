@@ -1,6 +1,6 @@
 import type { EnsureQueryDataOptions } from '@tanstack/react-query'
 import type { ComponentType } from 'react'
-import { createBrowserRouter } from 'react-router'
+import { createBrowserRouter, type RouterNavigateOptions, type To } from 'react-router'
 import { AdminError } from '../admin/AdminError'
 import { requireAdmin } from '../admin/guard'
 import { postQuery, postsQuery } from '../api/blog'
@@ -155,3 +155,21 @@ export const router = createBrowserRouter([
     ],
   },
 ])
+
+const isAdminPath = (path: string) => path.startsWith('/admin')
+
+/*
+  Public pages crossfade into each other (styles in globals.css). Opting in here
+  covers every link, nav item and CTA, instead of adding `viewTransition` to each
+  <Link>. Back/forward reuses the transition automatically. Skipped for the admin
+  and for same-page changes like ?category= filters. Browsers without View
+  Transitions just navigate.
+*/
+const navigate = router.navigate
+router.navigate = ((to: To | number | null, opts?: RouterNavigateOptions) => {
+  if (typeof to === 'number') return navigate(to)
+  const path = typeof to === 'string' ? to : (to?.pathname ?? '')
+  const changesPage = path !== '' && !path.startsWith('?') && !path.startsWith('#')
+  const animate = changesPage && !isAdminPath(path) && !isAdminPath(router.state.location.pathname)
+  return navigate(to, { ...opts, viewTransition: opts?.viewTransition ?? animate })
+}) as typeof router.navigate

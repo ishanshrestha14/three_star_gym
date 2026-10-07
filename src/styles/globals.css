@@ -73,6 +73,30 @@
   }
 }
 
+/*
+  Page transitions: a short crossfade between public pages (enabled in
+  app/router.tsx). The header and mobile bar get their own names so they stay
+  put while only the page underneath fades.
+*/
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+}
+
+::view-transition-group(site-header),
+::view-transition-group(mobile-actions) {
+  animation-duration: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 /* Long-form article body rendered from Markdown. */
 @layer components {
   .article {
