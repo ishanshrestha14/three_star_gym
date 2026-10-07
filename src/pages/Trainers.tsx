@@ -5,6 +5,7 @@ import { fadeUp } from '../animations/reveal'
 import { useMotion } from '../animations/useMotion'
 import { useSections } from '../api/sections'
 import { useTrainers } from '../api/trainers'
+import { EmptyState } from '../components/content/EmptyState'
 import { ResponsiveImage } from '../components/media/ResponsiveImage'
 import { PageHeader } from '../components/sections/PageHeader'
 import { TrialCta } from '../components/sections/TrialCta'
@@ -28,6 +29,9 @@ export default function Trainers() {
 
       <section ref={ref} className="py-16 md:py-28">
         <Container>
+          {trainers.length === 0 && (
+            <EmptyState title="Coach profiles coming soon" body="Come in for a free trial session and meet the coaches on the floor." />
+          )}
           <ul className="grid gap-x-8 gap-y-20 md:grid-cols-2">
             {trainers.map((trainer, index) => (
               <li key={trainer.slug} data-trainer className={index % 2 === 1 ? 'md:mt-32' : undefined}>
