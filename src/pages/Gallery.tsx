@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { galleryCategoryLabel, useGallery } from '../api/gallery'
+import { EmptyState } from '../components/content/EmptyState'
 import { Lightbox } from '../components/media/Lightbox'
 import { ResponsiveImage } from '../components/media/ResponsiveImage'
 import { PageHeader } from '../components/sections/PageHeader'
@@ -50,7 +51,7 @@ export default function Gallery() {
         )}
 
         {items.length === 0 ? (
-          <p className="py-20 text-center text-chalk/60">Photos are coming soon.</p>
+          <EmptyState title="Photos coming soon" body="We’re taking new photos of the floor, the equipment and the people who train here." />
         ) : (
           <ul className="columns-1 gap-4 sm:columns-2 lg:columns-3">
             {items.map((item, index) => (

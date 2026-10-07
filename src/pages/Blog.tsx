@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { Link, useSearchParams } from 'react-router'
 import { usePosts } from '../api/blog'
+import { EmptyState } from '../components/content/EmptyState'
 import { PostCard, PostMeta } from '../components/content/PostCard'
 import { ResponsiveImage } from '../components/media/ResponsiveImage'
 import { PageHeader } from '../components/sections/PageHeader'
@@ -48,7 +49,9 @@ export default function Blog() {
           </div>
         )}
 
-        {posts.length === 0 && <p className="py-20 text-center text-chalk/60">The first articles are on their way.</p>}
+        {posts.length === 0 && (
+          <EmptyState title="First articles coming soon" body="Training advice, nutrition tips and news from the floor will appear here." />
+        )}
 
         {featured && (
           <Link to={`/blog/${featured.slug}`} className="group mb-20 grid gap-8 md:mb-28 md:grid-cols-12 md:items-center">
