@@ -54,7 +54,7 @@ The live site still shows placeholder content. Most of it is changed in the admi
 | Status | Item | Who | Notes |
 | --- | --- | --- | --- |
 | Done | Release setup: Vercel token, two IDs, three GitHub secrets, first release `v1.0.0` (2026-10-07) | You | `docs/releasing.md` |
-| To do | Pitch the website to the owner | You | `docs/owner-pitch.md` |
+| To do | Pitch the website to the owner | You | Private notes, kept out of git |
 | To do | Claim the Google Business Profile | Owner + You | A "Three Star Gym" pin already shows on Google Maps; `docs/local-seo.md` section 1 |
 | To do | Custom domain (`.com` or `.com.np`) | Owner + You | Add in Vercel → Domains |
 | To do | Set `VITE_SITE_URL` to the new domain and redeploy | You | Canonical links, sitemap, share previews and analytics follow it |

@@ -28,3 +28,6 @@ dist-ssr
 .env.*
 !.env.example
 .vercel
+
+# Private notes (kept local, never pushed)
+docs/owner-pitch.md
