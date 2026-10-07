@@ -1,0 +1,54 @@
+# Deploys the site to production when a GitHub release is published.
+# Pushes to main no longer deploy (see "git.deploymentEnabled" in vercel.json);
+# pull requests still get preview deployments. Steps: docs/releasing.md
+name: Release to production
+
+on:
+  release:
+    types: [published]
+  # Manual run from the Actions tab, e.g. to redeploy a tag after changing env vars.
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Tag or commit to deploy (e.g. v1.0.0)
+        required: true
+
+# One production deploy at a time; a newer release waits for the current one.
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull production settings and environment variables
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      # Fail early instead of shipping a site that can't reach Supabase.
+      - name: Check required environment variables
+        run: |
+          for name in VITE_SUPABASE_URL VITE_SUPABASE_ANON_KEY; do
+            grep -Eq "^$name=\"?[^\"]" .vercel/.env.production.local || { echo "::error::$name is missing from Vercel's Production environment"; exit 1; }
+          done
+
+      - name: Build
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
