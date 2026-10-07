@@ -40,7 +40,9 @@ The website affects relevance and prominence. The profile affects all three.
 
 ## 1. Google Business Profile (most important)
 
-First check whether a profile for Three Star Gym already exists: search the name on Google Maps. If one
+First check whether a profile for Three Star Gym already exists: search the name on Google Maps. (On
+2026-10-07 the Contact page's map embed already showed a "Three Star Gym" pin at Loktantrik Chowk, so a
+listing probably exists and only needs claiming.) If one
 exists, the owner claims it ("Own this business?"). If not, create one at
 <https://business.google.com>.
 
