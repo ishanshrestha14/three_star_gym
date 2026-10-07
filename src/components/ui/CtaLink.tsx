@@ -28,7 +28,10 @@ type CtaLinkProps = {
   onClick?: () => void
 }
 
-/** Button-styled link. External URLs (tel:, wa.me, https:) render a plain anchor. */
+/**
+  Button-styled link. External URLs (tel:, wa.me, https:) render a plain anchor.
+  data-cta lets the analytics click listener count it as a call to action.
+*/
 export function CtaLink({ to, children, variant = 'primary', size = 'md', className, onClick }: CtaLinkProps) {
   const classes = cn(base, sizes[size], variants[variant], className)
 
@@ -37,6 +40,7 @@ export function CtaLink({ to, children, variant = 'primary', size = 'md', classN
     return (
       <a
         href={to}
+        data-cta
         className={classes}
         onClick={onClick}
         {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
@@ -47,7 +51,7 @@ export function CtaLink({ to, children, variant = 'primary', size = 'md', classN
   }
 
   return (
-    <Link to={to} className={classes} onClick={onClick}>
+    <Link to={to} data-cta className={classes} onClick={onClick}>
       {children}
     </Link>
   )

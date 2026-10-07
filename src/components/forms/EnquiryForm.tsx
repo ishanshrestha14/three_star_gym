@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSiteSettings } from '../../api/settings'
 import { EnquiryError, submitEnquiry, type EnquirySource } from '../../api/enquiries'
+import { track } from '../../lib/analytics'
 import { whatsappHref } from '../../lib/contact'
 import { enquirySchema, type EnquiryInput } from '../../schemas/enquiry'
 import { Field, TextArea, TextInput } from './Field'
@@ -39,6 +40,7 @@ export function EnquiryForm({
     setSubmitError(null)
     try {
       await submitEnquiry(values, { source, subject, membershipPlanId })
+      track('enquiry_submitted', { source })
     } catch (error) {
       setSubmitError(error instanceof EnquiryError ? error.message : 'Something went wrong. Please try again.')
       throw error // keeps isSubmitSuccessful false
