@@ -8,9 +8,57 @@ Merging into `main` no longer deploys anything. Pull requests still get their ow
 `.github/workflows/release.yml`, which pulls the Production environment variables from Vercel, builds the
 site and deploys it to production with the Vercel CLI.
 
+## Quick release: from merged PR to live
+
+The everyday steps, once the one-time setup below is done. Run the commands from the project folder.
+
+**1. Merge the PR into `main`**
+
+```sh
+gh pr merge <number> --rebase --delete-branch
+```
+
+*Website:* the PR page → **Rebase and merge** → **Confirm** → **Delete branch**.
+
+**2. Update your local `main`**
+
+```sh
+git switch main
+git pull --ff-only
+```
+
+**3. Pick the next version** (see [Version numbers](#version-numbers))
+
+```sh
+gh release list --limit 1    # shows the latest, e.g. v1.0.0
+```
+
+*Website:* repo → **Releases**; the top one is the latest.
+
+**4. Create the tag and publish the release** (this deploys)
+
+```sh
+gh release create v1.0.1 --target main --title v1.0.1 --generate-notes
+```
+
+This creates the tag `v1.0.1` on the latest `main` commit and publishes the release in one step.
+
+*Website:* repo → **Releases** → **Draft a new release** → **Choose a tag** → type `v1.0.1` →
+**Create new tag on publish** → target `main` → **Generate release notes** → **Publish release**.
+
+**5. Watch the deploy** (about 2–3 minutes)
+
+```sh
+gh run watch $(gh run list --workflow release.yml --limit 1 --json databaseId --jq '.[0].databaseId')
+```
+
+*Website:* repo → **Actions** → **Release to production** → the newest run.
+
+When it shows a green tick, open <https://threestargym.vercel.app> and check the change.
+
 ## One-time setup
 
-Do these once, in order. Steps 1–4 happen before the PR that adds this file is merged.
+Done on 2026-10-07 (first release `v1.0.0`). Kept here for when the token expires or the project moves.
 
 ### 1. Create a Vercel token
 
