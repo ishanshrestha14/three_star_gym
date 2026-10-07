@@ -71,7 +71,7 @@ export default function BlogPost() {
             {post.author ? (
               <>
                 By{' '}
-                <Link to={`/trainers/${post.author.slug}`} className="text-chalk underline-offset-4 hover:underline">
+                <Link to={`/trainers/${post.author.slug}`} className="text-chalk underline decoration-chalk/30 underline-offset-4 hover:decoration-accent">
                   {post.author.name}
                 </Link>
               </>
