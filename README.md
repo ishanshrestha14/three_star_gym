@@ -89,6 +89,10 @@ supabase/
   tests/        RLS policy tests
 ```
 
-Placeholder photos in `public/placeholder/` are temporary Unsplash images.
+Placeholder photos in `public/placeholder/` are temporary Unsplash images. The hero video in
+`public/hero/` is a temporary clip from Pexels (free licence,
+<https://www.pexels.com/video/man-lifting-a-barbell-5319746/>). To replace it with real footage, run
+`scripts/hero-video.sh <clip.mp4> [start] [length] [mobile-crop-x]` and redeploy; set `heroVideo` in
+`src/content/heroVideo.ts` to `null` to show only the hero photo.
 The default page title and link-preview text live in `index.html`; the default share
 image is `public/og-default.jpg`, made from `scripts/og-image.html`.

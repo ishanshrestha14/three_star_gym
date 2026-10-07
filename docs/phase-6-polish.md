@@ -25,7 +25,7 @@ without approval. Tick the checklists and fill in the decisions log as steps lan
 | 2. Launch QA pass | Not started |
 | 3. Public empty and error states | Not started |
 | 4. Click analytics | Not started |
-| Making it ours (ongoing) | Not started |
+| Making it ours (ongoing) | Hero headline and video done |
 
 ## Already in place
 
@@ -188,6 +188,14 @@ plan before we commit; the alternative is a free self-hosted option such as Umam
 Over time, replace generic pieces with custom elements and icons so the site reads as Three Star Gym's
 own. Nothing here blocks the four steps; items are picked up one at a time between or after them.
 
+**Done**
+
+- Hero headline about 40% smaller (`--text-hero`), kept to the left so the background stays visible
+- Hero background video: `src/components/media/HeroVideo.tsx`, files in `public/hero/` (desktop 636 KB,
+  phone 298 KB, placeholder Pexels clip). Loads after the page, fades in once playing, pauses off screen,
+  skipped for Data Saver and reduced motion; the admin hero photo shows first and as the fallback.
+  Replace with real footage via `scripts/hero-video.sh`.
+
 **Ideas**
 
 - A Three Star mark (three stars, or a star cut from a weight plate) for the logo, favicon and share image,
@@ -196,7 +204,7 @@ own. Nothing here blocks the four steps; items are picked up one at a time betwe
   replacing the generic Lucide icons on public pages
 - Signature dividers or section markers, for example plate-edge or chalk-line motifs
 - A custom cursor or hover effect for primary CTAs on desktop, kept subtle
-- Real photos of the gym replacing the Unsplash placeholders in `public/placeholder/`
+- Real photos and video of the gym replacing the Unsplash and Pexels placeholders
 - A short branded loading or 404 illustration
 
 **Rules**
@@ -221,6 +229,8 @@ own. Nothing here blocks the four steps; items are picked up one at a time betwe
 
 | Date | Decision |
 | --- | --- |
+| 2026-10-07 | Hero video hosted on Vercel in `public/hero/`, not Supabase (5 GB/month download limit) |
+| 2026-10-07 | Phones get a lighter portrait clip; Data Saver and reduced motion get the photo only |
 | 2026-10-07 | Page transitions enabled globally in the router instead of per link |
 | 2026-10-07 | Phase 6 runs the four steps in order: transitions, QA, empty and error states, analytics |
 | 2026-10-07 | Site moved to `threestargym.vercel.app`; gym renamed to "Three Star Gym" |
