@@ -54,7 +54,7 @@ export function GalleryStrip({ images }: { images: GalleryImage[] }) {
           >
             <ResponsiveImage
               image={item.image}
-              sizes="(min-width: 768px) 32vw, 75vw"
+              sizes="(min-width: 768px) 22vw, 55vw"
               className="h-full w-full object-cover"
             />
           </li>
