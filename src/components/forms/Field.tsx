@@ -35,7 +35,7 @@ export function Field({ label, hint, error, children }: FieldProps) {
 }
 
 const control =
-  'mt-2 block w-full border-0 border-b border-chalk/30 bg-transparent px-0 py-3 text-lg text-chalk placeholder:text-chalk/30 transition-colors focus:border-chalk focus:outline-none focus:ring-0 aria-invalid:border-accent'
+  'mt-2 block w-full border-0 border-b border-chalk/30 bg-transparent px-0 py-3 text-lg text-chalk placeholder:text-chalk/30 transition-colors focus:border-chalk focus:shadow-[0_1px_0_0_var(--color-chalk)] focus:outline-none focus:ring-0 aria-invalid:border-accent'
 
 export function TextInput({ className, ...props }: ComponentPropsWithoutRef<'input'>) {
   return <input className={cn(control, className)} {...props} />
