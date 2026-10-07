@@ -2,6 +2,7 @@ import { useFaqs } from '../api/faqs'
 import { useGallery } from '../api/gallery'
 import { usePlans } from '../api/plans'
 import { useSections } from '../api/sections'
+import { useSiteSettings } from '../api/settings'
 import { useServices } from '../api/services'
 import { useTestimonials } from '../api/testimonials'
 import { useTrainers } from '../api/trainers'
@@ -11,6 +12,7 @@ import { FaqList } from '../components/sections/FaqList'
 import { GalleryStrip } from '../components/sections/GalleryStrip'
 import { Hero } from '../components/sections/Hero'
 import { MembershipPlans } from '../components/sections/MembershipPlans'
+import { PageHeader } from '../components/sections/PageHeader'
 import { ServiceRows } from '../components/sections/ServiceRows'
 import { StatsStrip } from '../components/sections/StatsStrip'
 import { Testimonials } from '../components/sections/Testimonials'
@@ -24,6 +26,7 @@ import { Seo } from '../components/seo/Seo'
 /* All data is fetched by the route loader before this renders; hidden or empty sections drop out. */
 export default function Home() {
   const sections = useSections()
+  const site = useSiteSettings()
   const services = useServices()
   const trainers = useTrainers()
   const plans = usePlans()
@@ -36,7 +39,14 @@ export default function Home() {
     <>
       <Seo />
       <GymJsonLd />
-      {sections.hero && <Hero content={sections.hero} />}
+      {/* Hidden or invalid hero: a plain header keeps the page's heading and clears the fixed navbar. */}
+      {sections.hero ? (
+        <Hero content={sections.hero} />
+      ) : (
+        <div className="pb-12 md:pb-16">
+          <PageHeader title={site.name} intro={site.description} />
+        </div>
+      )}
       <StatsStrip stats={sections.stats} />
       {sections.about && <BrandIntro content={sections.about} />}
       <ServiceRows services={services} />
