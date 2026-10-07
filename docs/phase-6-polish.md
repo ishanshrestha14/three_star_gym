@@ -24,7 +24,7 @@ without approval. Tick the checklists and fill in the decisions log as steps lan
 | 1. Page transitions | Done (awaiting approval) |
 | 2. Launch QA pass | Done (awaiting approval) |
 | 3. Public empty and error states | Done (awaiting approval) |
-| 4. Click analytics | Built; needs the Umami website ID |
+| 4. Click analytics | Code done; switched on later with the custom domain |
 | Making it ours (ongoing) | Hero headline and video done |
 
 ## Already in place
@@ -226,6 +226,13 @@ Production only), locks it to the production domain (`data-domains`), drops anyt
 is sent (`data-before-send`), and uses one document-level click listener, so new phone, WhatsApp, map and
 CTA links are counted without extra code. No names, phone numbers or emails are sent.
 
+**Switching it on (later, with the custom domain):**
+
+1. Create a free account at <https://cloud.umami.is> and add a website with the real domain.
+2. In Vercel → Settings → Environment Variables, add `VITE_UMAMI_WEBSITE_ID` for **Production only**.
+3. Make sure `VITE_SITE_URL` is the real domain (the script only counts that hostname), then redeploy.
+4. Click a phone, WhatsApp and map link on the live site and check they appear under Events in Umami.
+
 **Known gap:** visitors using Brave or an ad blocker aren't counted, because those block Umami's script.
 Expect the numbers to read somewhat low.
 
@@ -284,6 +291,7 @@ own. Nothing here blocks the four steps; items are picked up one at a time betwe
 
 | Date | Decision |
 | --- | --- |
+| 2026-10-07 | Analytics code merged but left off until the custom domain is live |
 | 2026-10-07 | Analytics: Umami Cloud free plan (Vercel free plan has no custom events) |
 | 2026-10-07 | Error page contact details come from a build-time snapshot, not live data |
 | 2026-10-07 | React Query is the only retry layer for public data (PostgREST client retries off) |
