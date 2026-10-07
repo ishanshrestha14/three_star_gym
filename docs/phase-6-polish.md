@@ -22,7 +22,7 @@ without approval. Tick the checklists and fill in the decisions log as steps lan
 | Step | Status |
 | --- | --- |
 | 1. Page transitions | Done (awaiting approval) |
-| 2. Launch QA pass | Not started |
+| 2. Launch QA pass | Done (awaiting approval) |
 | 3. Public empty and error states | Not started |
 | 4. Click analytics | Not started |
 | Making it ours (ongoing) | Hero headline and video done |
@@ -103,17 +103,49 @@ FAQ, Contact, Free trial, 404, plus a quick pass over the admin.
 
 **Done when**
 
-- [ ] Screenshots reviewed for every page at every width, issues fixed
-- [ ] Zero console errors on public pages
-- [ ] Zero broken links
-- [ ] Lighthouse mobile scores and Core Web Vitals recorded below, targets met
-- [ ] Definition of Done (§53, public website) all true
+- [x] Screenshots reviewed for every page at every width, issues fixed
+- [x] Zero console errors on public pages
+- [x] Zero broken links
+- [ ] Lighthouse mobile scores and Core Web Vitals recorded below, targets met (CLS met; LCP not, see
+      follow-ups)
+- [ ] Definition of Done (§53, public website) all true (pending real content and button contrast)
+
+Lighthouse 13, mobile (simulated slow 4G), on the fixed build, 2026-10-07. Before the fixes, the live site
+scored 72–73 performance with LCP 5.0–5.7 s.
 
 | Page | Performance | Accessibility | Best practices | SEO | LCP | CLS |
 | --- | --- | --- | --- | --- | --- | --- |
-| Home | | | | | | |
-| Service | | | | | | |
-| Blog post | | | | | | |
+| Home | 77–80 | 96 | 100 | 100 | 4.4–4.9 s | 0.027 |
+| Service | 78–79 | 96 | 100 | 100 | 4.7–4.8 s | 0 |
+| Blog post | 76 | 96 | 100 | 100 | 5.2 s | 0 |
+
+**What was checked:** all 25 sitemap pages plus a 404 for console errors and broken links; 14 page types
+at 375, 430, 768, 1280 and 1440 px for overflow, tap targets, image sizes and the mobile bar; full-page
+screenshots at 390 and 1280 px; keyboard tabbing on Home, Contact and Gallery.
+
+**Fixed**
+
+- GSAP warning on Membership (plans header animated while hidden)
+- Small text links ("All services", "More about…", "Get directions"…) now have a 44 px tap area
+  (`hit-area` utility)
+- Focused form fields show a clear 2 px line
+- Blog author link underlined (was colour only)
+- Gallery strip `sizes` matched to its layout
+- Preconnect to Supabase so data starts loading sooner
+- Heavy placeholder photos recompressed (4.6 MB → 2.6 MB in total)
+
+**Follow-ups**
+
+- LCP is still ~4.5–5 s on Lighthouse's slow 4G. First paint waits on 189 KB of JS plus Supabase data.
+  Options: a static shell in `index.html` so something paints immediately, loading GSAP after first paint,
+  and a 960 px image size (needs re-processing stored images). Real-world 4G/WiFi in Kathmandu is faster
+  than this simulation; check Vercel's field data once there is traffic.
+- White text on the orange buttons is 3.5:1 (needs 4.5:1). Deferred until the brand colour is decided.
+- Placeholder content still live: email `hello@threestarfitness.com.np`, phone and WhatsApp
+  `9800000000`, Saturday "Closed", homepage stats ("10+ years", "500+ members", "4.9 Google rating").
+  The owner must confirm or replace these, especially the Google rating.
+- Lighthouse flags `llms.txt` and `ai-catalog.json` because the SPA returns the homepage for unknown
+  paths; harmless.
 
 ## Step 3 — Public empty and error states
 
@@ -231,6 +263,7 @@ own. Nothing here blocks the four steps; items are picked up one at a time betwe
 
 | Date | Decision |
 | --- | --- |
+| 2026-10-07 | Orange button contrast (3.5:1) left as is until the real brand colour is decided |
 | 2026-10-07 | Hero video hosted on Vercel in `public/hero/`, not Supabase (5 GB/month download limit) |
 | 2026-10-07 | Phones get a lighter portrait clip; Data Saver and reduced motion get the photo only |
 | 2026-10-07 | Page transitions enabled globally in the router instead of per link |
