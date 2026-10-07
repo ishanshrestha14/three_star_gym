@@ -6,6 +6,14 @@ interface ImportMetaEnv {
   readonly VITE_SITE_URL?: string
 }
 
+/** Gym name and contact numbers captured at build time for the error page; null if Supabase was unreachable. */
+declare const __CONTACT_FALLBACK__: {
+  name: string
+  phone: string
+  whatsappNumber: string
+  whatsappMessage: string
+} | null
+
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
