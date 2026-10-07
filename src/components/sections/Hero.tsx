@@ -2,7 +2,9 @@ import { useRef } from 'react'
 import { gsap } from '../../animations/gsap'
 import { useMotion } from '../../animations/useMotion'
 import { useSiteSettings } from '../../api/settings'
+import { heroVideo } from '../../content/heroVideo'
 import type { HeroContent } from '../../types/content'
+import { HeroVideo } from '../media/HeroVideo'
 import { ResponsiveImage } from '../media/ResponsiveImage'
 import { Container } from '../ui/Container'
 import { CtaLink } from '../ui/CtaLink'
@@ -37,8 +39,9 @@ export function Hero({ content }: { content: HeroContent }) {
   return (
     <section ref={ref} className="relative isolate flex h-svh min-h-[40rem] flex-col overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div data-hero-media className="h-full w-full">
+        <div data-hero-media className="relative h-full w-full">
           <ResponsiveImage image={content.image} sizes="100vw" priority className="h-full w-full object-cover object-[60%_center]" />
+          {heroVideo && <HeroVideo {...heroVideo} className="absolute inset-0 h-full w-full object-cover" />}
         </div>
         {/* Scrims: top keeps the nav legible, bottom-left sits behind the headline so the rest of the frame stays clear */}
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(26_27_29/0.6)_0%,rgb(26_27_29/0)_25%,rgb(26_27_29/0)_55%,var(--color-graphite)_100%)]" />

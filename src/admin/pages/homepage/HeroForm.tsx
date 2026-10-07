@@ -51,7 +51,7 @@ export function HeroForm({ content }: { content: HeroContent | null }) {
         <CtaFields register={register} name="primaryCta" label="Main button" errors={errors} />
         <CtaFields register={register} name="secondaryCta" label="Second button" errors={errors} />
       </FormSection>
-      <FormSection title="Background photo" description="The first thing visitors see. Use a dark, atmospheric landscape photo with space for the headline.">
+      <FormSection title="Background photo" description="The first thing visitors see. Use a dark, atmospheric landscape photo with space for the headline. It shows while the background video loads, and instead of it for visitors saving mobile data.">
         <Controller
           control={control}
           name="image"
