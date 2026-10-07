@@ -19,7 +19,7 @@ export function MembershipPlans({ plans, showHeader = true }: MembershipPlansPro
   const ref = useRef<HTMLElement>(null)
 
   useMotion(() => {
-    revealLines('[data-line]', { trigger: ref.current })
+    if (showHeader) revealLines('[data-line]', { trigger: ref.current })
     fadeUp('[data-plan]', { trigger: '[data-plans]' })
   }, ref)
 
