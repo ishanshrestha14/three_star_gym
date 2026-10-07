@@ -33,7 +33,7 @@ await service.from('faqs').insert({ question: 'Draft?', answer: 'Hidden', publis
 const faqs = (await anon.from('faqs').select('question')).data
 check('anon cannot see unpublished FAQ', faqs.every(f => f.question !== 'Draft?'))
 check('admin sees unpublished FAQ', (await admin.from('faqs').select('question')).data.some(f => f.question === 'Draft?'))
-check('anon reads site settings', (await anon.from('site_settings').select('gym_name').single()).data?.gym_name === 'Three Star Fitness')
+check('anon reads site settings', (await anon.from('site_settings').select('gym_name').single()).data?.gym_name === 'Three Star Gym')
 
 // public writes blocked
 let r = await anon.from('services').update({ title: 'hacked' }).eq('slug', 'cardio').select()

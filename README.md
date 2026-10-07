@@ -1,4 +1,4 @@
-# Three Star Fitness website
+# Three Star Gym website
 
 Public website and admin panel for a local gym. React + TypeScript + Vite,
 Tailwind CSS, GSAP, Supabase (Postgres, Auth, Storage), deployed on Vercel.
