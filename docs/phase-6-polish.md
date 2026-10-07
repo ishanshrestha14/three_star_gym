@@ -21,7 +21,7 @@ without approval. Tick the checklists and fill in the decisions log as steps lan
 
 | Step | Status |
 | --- | --- |
-| 1. Page transitions | Not started |
+| 1. Page transitions | Done (awaiting approval) |
 | 2. Launch QA pass | Not started |
 | 3. Public empty and error states | Not started |
 | 4. Click analytics | Not started |
@@ -63,11 +63,18 @@ switched off in CSS and pages swap instantly.
 
 **Done when**
 
-- [ ] Home → About, Home → Services and Blog → Article fade, with the navbar steady
-- [ ] Back and forward buttons fade too, and scroll position is restored correctly
-- [ ] No flash of the old page and no layout jump on mobile
-- [ ] Reduced motion swaps pages with no animation
-- [ ] Public JS stays within about 1 KB gzipped of today's 189 KB
+- [x] Home → About, Home → Services and Blog → Article fade, with the navbar steady
+- [x] Back and forward buttons fade too, and scroll position is restored correctly
+- [x] No flash of the old page and no layout jump on mobile
+- [x] Reduced motion swaps pages with no animation
+- [x] Public JS stays within about 1 KB gzipped of today's 189 KB (189.1 KB)
+
+**Result:** one wrapper around `router.navigate` in `src/app/router.tsx` turns on transitions for every
+public navigation, so new links get them automatically. Same-page changes (gallery and blog `?category=`
+filters) and the admin don't animate. CSS lives in `src/styles/globals.css`; the header and mobile bar
+have their own `view-transition-name`. Checked in a headless browser at 1280 px and 375 px, with and without
+reduced motion: a transition on every navigation including back and forward, scroll restored on back, no
+console errors.
 
 ## Step 2 — Launch QA pass
 
@@ -214,5 +221,6 @@ own. Nothing here blocks the four steps; items are picked up one at a time betwe
 
 | Date | Decision |
 | --- | --- |
+| 2026-10-07 | Page transitions enabled globally in the router instead of per link |
 | 2026-10-07 | Phase 6 runs the four steps in order: transitions, QA, empty and error states, analytics |
 | 2026-10-07 | Site moved to `threestargym.vercel.app`; gym renamed to "Three Star Gym" |
