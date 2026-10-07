@@ -25,7 +25,7 @@ export function Footer() {
               href={site.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-block text-sm font-semibold underline decoration-chalk/30 underline-offset-4 hover:decoration-chalk"
+              className="hit-area mt-2 inline-block text-sm font-semibold underline decoration-chalk/30 underline-offset-4 hover:decoration-chalk"
             >
               Get directions
             </a>

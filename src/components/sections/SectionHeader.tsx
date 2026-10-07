@@ -14,7 +14,7 @@ export function SectionHeader({ title, link }: SectionHeaderProps) {
       {link && (
         <Link
           to={link.to}
-          className="pb-2 text-sm font-semibold underline decoration-chalk/30 underline-offset-4 transition-colors hover:decoration-accent"
+          className="hit-area pb-2 text-sm font-semibold underline decoration-chalk/30 underline-offset-4 transition-colors hover:decoration-accent"
         >
           {link.label}
         </Link>

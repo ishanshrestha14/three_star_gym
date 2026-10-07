@@ -60,7 +60,7 @@ export default function BlogPost() {
 
       <Container className="pt-32 md:pt-40">
         <div data-post-head className="mx-auto max-w-4xl">
-          <Link to="/blog" className="mb-8 inline-flex items-center gap-2 text-sm text-chalk/60 hover:text-chalk">
+          <Link to="/blog" className="hit-area mb-8 inline-flex items-center gap-2 text-sm text-chalk/60 hover:text-chalk">
             <ArrowLeft aria-hidden className="size-4" />
             All articles
           </Link>

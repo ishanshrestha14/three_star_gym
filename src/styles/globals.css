@@ -97,6 +97,22 @@
   }
 }
 
+/*
+  Small text links get an invisible 44px-tall tap area on touch screens
+  without changing the layout around them.
+*/
+@utility hit-area {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}
+
 /* Long-form article body rendered from Markdown. */
 @layer components {
   .article {

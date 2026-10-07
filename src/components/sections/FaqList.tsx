@@ -28,7 +28,7 @@ export function FaqList({ faqs, title = 'Questions,\nanswered.' }: FaqListProps)
           <MaskedLines text={title} className="type-display text-display" />
           <Link
             to="/faq"
-            className="mt-8 inline-block text-sm font-semibold underline decoration-chalk/30 underline-offset-4 hover:decoration-accent"
+            className="hit-area mt-8 inline-block text-sm font-semibold underline decoration-chalk/30 underline-offset-4 hover:decoration-accent"
           >
             See all questions
           </Link>

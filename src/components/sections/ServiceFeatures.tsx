@@ -47,7 +47,7 @@ export function ServiceFeatures({ services }: { services: Service[] }) {
                   <p className="mt-4 text-lg leading-relaxed text-chalk/75">{service.shortDescription}</p>
                   <Link
                     to={`/services/${service.slug}`}
-                    className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold"
+                    className="group hit-area mt-8 inline-flex items-center gap-2 text-sm font-semibold"
                   >
                     <span className="underline decoration-chalk/30 underline-offset-4 transition-colors group-hover:decoration-accent">
                       More about {service.title.toLowerCase()}

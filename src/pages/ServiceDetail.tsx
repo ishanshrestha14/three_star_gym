@@ -61,7 +61,7 @@ export default function ServiceDetail() {
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(26_27_29/0.75)_0%,rgb(26_27_29/0.25)_40%,var(--color-graphite)_100%)]" />
         </div>
         <Container>
-          <Link to="/services" className="mb-8 inline-flex items-center gap-2 text-sm text-chalk/70 hover:text-chalk">
+          <Link to="/services" className="hit-area mb-8 inline-flex items-center gap-2 text-sm text-chalk/70 hover:text-chalk">
             <ArrowLeft aria-hidden className="size-4" />
             All services
           </Link>

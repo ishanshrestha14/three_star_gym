@@ -39,7 +39,7 @@ export default function Contact() {
         <div className="md:col-span-5">
           <Detail label="Address">
             <address className="not-italic">{site.address}</address>
-            <a href={site.googleMapsUrl} target="_blank" rel="noopener noreferrer" className={`mt-2 inline-block text-base font-semibold ${linkClass}`}>
+            <a href={site.googleMapsUrl} target="_blank" rel="noopener noreferrer" className={`hit-area mt-2 inline-block text-base font-semibold ${linkClass}`}>
               Get directions
             </a>
           </Detail>

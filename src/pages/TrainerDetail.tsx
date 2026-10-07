@@ -55,7 +55,7 @@ export default function TrainerDetail() {
         </div>
 
         <div className="md:col-span-6 md:col-start-7 md:pt-4">
-          <Link to="/trainers" className="mb-8 inline-flex items-center gap-2 text-sm text-chalk/60 hover:text-chalk">
+          <Link to="/trainers" className="hit-area mb-8 inline-flex items-center gap-2 text-sm text-chalk/60 hover:text-chalk">
             <ArrowLeft aria-hidden className="size-4" />
             All coaches
           </Link>
