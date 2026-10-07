@@ -23,7 +23,7 @@ without approval. Tick the checklists and fill in the decisions log as steps lan
 | --- | --- |
 | 1. Page transitions | Done (awaiting approval) |
 | 2. Launch QA pass | Done (awaiting approval) |
-| 3. Public empty and error states | Not started |
+| 3. Public empty and error states | Done (awaiting approval) |
 | 4. Click analytics | Not started |
 | Making it ours (ongoing) | Hero headline and video done |
 
@@ -156,15 +156,16 @@ should show a friendly retry instead of a blank page (PRD §42: "Do not leave bl
 
 | Page or section | Nothing published | Plan |
 | --- | --- | --- |
-| Home sections (services, trainers, plans, testimonials, transformations, gallery, FAQ) | To check | Hide the section cleanly, with no leftover heading or gap |
-| Services page | To check | Short message and a link to contact |
-| Trainers page | To check | Short message |
-| Membership page | To check | "Ask us for prices" with call and WhatsApp |
-| Gallery page | To check | Short message and an Instagram link if set |
-| Blog page | To check | "First articles coming soon" |
-| FAQ page | To check | Link to contact |
-| Free trial form (no plans) | To check | Form still works without a plan picker |
-| Unpublished slug (service, trainer, post) | Shows 404 | Keep, check the copy |
+| Home sections (services, trainers, plans, testimonials, transformations, gallery, FAQ) | Already hid cleanly | No change |
+| Home hero hidden or invalid | Stats slid under the fixed navbar, no `<h1>` | Falls back to a plain header with the gym name and description |
+| Services page | Heading, then nothing | "Services coming soon" |
+| Trainers page | Heading, then nothing | "Coach profiles coming soon" |
+| Membership page | Heading, then nothing | "Ask us about prices" with WhatsApp and Call buttons |
+| Gallery page | Small centred line | Same `EmptyState` block as the others |
+| Blog page | Small centred line | Same `EmptyState` block as the others |
+| FAQ page | Heading, then the contact CTA; empty FAQ schema | "Answers coming soon"; schema skipped when empty |
+| Free trial form (no plans) | Works | No change |
+| Unpublished slug (service, trainer, post) | Shows 404 | No change |
 
 **Errors to handle**
 
@@ -178,9 +179,23 @@ an outage.
 
 **Done when**
 
-- [ ] Every row in the table above checked and handled
-- [ ] Outage and failed-chunk cases show the retry page with contact details
-- [ ] No blank screens anywhere
+- [x] Every row in the table above checked and handled
+- [x] Outage and failed-chunk cases show the retry page with contact details
+- [x] No blank screens anywhere
+
+**Result**
+
+- `src/components/content/EmptyState.tsx` is the one empty-state block used on all listing pages.
+- **Outage:** the error page now shows within ~1 s (was ~15 s of blank screen, because the PostgREST
+  client's own retries stacked with React Query's). It shows the gym name, WhatsApp and Call buttons from a
+  build-time snapshot (`scripts/contactFallback.ts` → `__CONTACT_FALLBACK__`). If Supabase is unreachable
+  during the build, the page still works without the buttons and the build log warns.
+- **Stale chunk after a deploy:** `vite:preloadError` reloads once, straight into the page being opened.
+  A 10 s guard stops reload loops; if the chunk is still missing, the error page shows.
+- **Malformed content:** the database's check constraints already reject bad image JSON; a hero that
+  fails validation is skipped and the fallback header shows.
+- Tested in a headless browser against a local database with everything unpublished, with Supabase
+  blocked, and with a page chunk returning 404.
 
 ## Step 4 — Click analytics
 
@@ -263,6 +278,8 @@ own. Nothing here blocks the four steps; items are picked up one at a time betwe
 
 | Date | Decision |
 | --- | --- |
+| 2026-10-07 | Error page contact details come from a build-time snapshot, not live data |
+| 2026-10-07 | React Query is the only retry layer for public data (PostgREST client retries off) |
 | 2026-10-07 | Orange button contrast (3.5:1) left as is until the real brand colour is decided |
 | 2026-10-07 | Hero video hosted on Vercel in `public/hero/`, not Supabase (5 GB/month download limit) |
 | 2026-10-07 | Phones get a lighter portrait clip; Data Saver and reduced motion get the photo only |
