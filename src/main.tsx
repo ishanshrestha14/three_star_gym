@@ -7,6 +7,7 @@ import { createRoot } from 'react-dom/client'
 import { createPath } from 'react-router'
 import { RouterProvider } from 'react-router/dom'
 import { router } from './app/router'
+import { initAnalytics } from './lib/analytics'
 import { queryClient } from './lib/queryClient'
 
 /*
@@ -28,6 +29,8 @@ window.addEventListener('vite:preloadError', (event) => {
   const next = router.state.navigation.location
   window.location.assign(next ? createPath(next) : window.location.href)
 })
+
+initAnalytics()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
