@@ -195,6 +195,8 @@ own. Nothing here blocks the four steps; items are picked up one at a time betwe
   phone 298 KB, placeholder Pexels clip). Loads after the page, fades in once playing, pauses off screen,
   skipped for Data Saver and reduced motion; the admin hero photo shows first and as the fallback.
   Replace with real footage via `scripts/hero-video.sh`.
+- Admin → Homepage → Hero → Background: **Video** or **Photo only** (`background` in the hero content;
+  missing means Video). The video files themselves still change only through the script and a redeploy.
 
 **Ideas**
 
