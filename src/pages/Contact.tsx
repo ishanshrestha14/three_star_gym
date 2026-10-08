@@ -1,3 +1,4 @@
+import { MessageCircle, Phone } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useSiteSettings } from '../api/settings'
 import { EnquiryForm } from '../components/forms/EnquiryForm'
@@ -44,13 +45,15 @@ export default function Contact() {
             </a>
           </Detail>
           <Detail label="Phone">
-            <a href={telHref(site.phone)} className={linkClass}>
-              {site.phone}
+            <a href={telHref(site.phone)} className="inline-flex items-center gap-3">
+              <Phone aria-hidden="true" className="size-5 shrink-0 text-accent" strokeWidth={1.5} />
+              <span className={linkClass}>{site.phone}</span>
             </a>
           </Detail>
           <Detail label="WhatsApp">
-            <a href={whatsappHref(site)} target="_blank" rel="noopener noreferrer" className={linkClass}>
-              Chat with us
+            <a href={whatsappHref(site)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3">
+              <MessageCircle aria-hidden="true" className="size-5 shrink-0 text-accent" strokeWidth={1.5} />
+              <span className={linkClass}>Chat with us</span>
             </a>
           </Detail>
           {site.email && (
